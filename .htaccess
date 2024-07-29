@@ -1,0 +1,17 @@
+# Redirect to default.php when there is nothing after the domain
+RewriteRule ^$ /default.php [L]
+
+# Allow direct access to register.php
+RewriteRule ^register.php$ - [L]
+
+# Allow direct access to login.php
+RewriteRule ^login.php$ - [L]
+
+# Allow direct access to templates.php
+RewriteRule ^templates.php$ - [L]
+
+# Rewrite any other requests with a parameter
+RewriteRule ^([^/]+)/?$ /?account=$1 [L,QSA]
+
+# Rewrite any other requests with a parameter
+RewriteRule ^([^/]+)/?$ /?account=$1 [L,QSA]
