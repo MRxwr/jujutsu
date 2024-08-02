@@ -87,10 +87,10 @@ if( isset($_POST["fullName"]) ){
 			<label><?php echo direction("Shop","المحل") ?></label>
 			<select name="shopId" class="form-control">
 				<?php
-				if( $shop = selectDB("shops","`status` = '0'") ){
-					for( $i = 0; $i < sizeof($shop); $i++ ){
-						$shopTitle = direction($shop[$i]["enTitle"],$shop[$i]["arTitle"]);
-						echo "<option value='{$shop[$i]["id"]}'>{$shopTitle}</option>";
+				if( $branch = selectDB("branches","`status` = '0' AND `hidden` = '0'") ){
+					for( $i = 0; $i < sizeof($branch); $i++ ){
+						$branchTitle = direction($branch[$i]["enTitle"],$branch[$i]["arTitle"]);
+						echo "<option value='{$branch[$i]["id"]}'>{$branchTitle}</option>";
 					}
 				}
 				?>
@@ -146,10 +146,10 @@ if( isset($_POST["fullName"]) ){
 					$hide = direction("Lock","قفل الحساب");
 				}
 				
-				if( $shop = selectDB("shops","`id` = '{$trainers[$i]["shopId"]}'") ){
-					$shop = direction($shop[0]["enTitle"],$shop[0]["arTitle"]);
+				if( $branch = selectDB("branches","`id` = '{$trainers[$i]["shopId"]}'") ){
+					$branch = direction($branch[0]["enTitle"],$branch[0]["arTitle"]);
 				}else{
-					$shop = "";
+					$branch = "";
 				}
 				
 				?>
@@ -157,7 +157,7 @@ if( isset($_POST["fullName"]) ){
 				<td id="name<?php echo $trainers[$i]["id"]?>" ><?php echo $trainers[$i]["fullName"] ?></td>
 				<td id="email<?php echo $trainers[$i]["id"]?>" ><?php echo $trainers[$i]["email"] ?></td>
 				<td id="mobile<?php echo $trainers[$i]["id"]?>" ><?php echo $trainers[$i]["phone"] ?></td>
-				<td><?php echo $shop ?></td>
+				<td><?php echo $branch ?></td>
 				<td class="text-nowrap">
                     <a id="<?php echo $trainers[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i>
                     </a>
