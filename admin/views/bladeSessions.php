@@ -124,7 +124,7 @@ if( isset($_POST["enTitle"]) ){
 				}else{
 					$icon = "fa fa-eye-slash";
 					$link = "?v={$_GET["v"]}&hide={$sessions[$i]["id"]}";
-					$hide = direction("Hide","إخفاء");
+					$hide = direction("Hide","إخفاء"); 
 				}
 				?>
 				<tr>
