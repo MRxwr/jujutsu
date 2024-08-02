@@ -115,37 +115,37 @@ if( isset($_POST["enTitle"]) ){
 		<tbody>
 		<?php 
 		if( $belts = selectDB('belts',"`status` = '0' ORDER BY `rank` ASC") ){
-		for( $i = 0; $i < sizeof($belts); $i++ ){
-		$counter = $i + 1;
-		if ( $belts[$i]["hidden"] == 2 ){
-			$icon = "fa fa-eye";
-			$link = "?v={$_GET["v"]}&show={$belts[$i]["id"]}";
-			$hide = direction("Show","إظهار");
-		}else{
-			$icon = "fa fa-eye-slash";
-			$link = "?v={$_GET["v"]}&hide={$belts[$i]["id"]}";
-			$hide = direction("Hide","إخفاء");
-		}
-		?>
-		<tr>
-		<td>
-		<input name="rank[]" class="form-control" type="number" value="<?php echo $counter ?>">
-		<input name="id[]" class="form-control" type="hidden" value="<?php echo $belts[$i]["id"] ?>">
-		</td>
-		<td id="enTitle<?php echo $belts[$i]["id"]?>" ><?php echo $belts[$i]["enTitle"] ?></td>
-		<td id="arTitle<?php echo $belts[$i]["id"]?>" ><?php echo $belts[$i]["arTitle"] ?></td>
-		<td class="text-nowrap">
-			<a id="<?php echo $belts[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i>
-			</a>
-			<a href="<?php echo $link ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo $hide ?>"> <i class="<?php echo $icon ?> text-inverse m-r-10"></i>
-			</a>
-			<a href="<?php echo "?v={$_GET["v"]}&delId={$belts[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i>
-			</a>
-		<div style="display:none"><label id="hidden<?php echo $belts[$i]["id"]?>"><?php echo $belts[$i]["hidden"] ?></label></div>		
-		</td>
-		</tr>
-		<?php
-		}
+			for( $i = 0; $i < sizeof($belts); $i++ ){
+				$counter = $i + 1;
+				if ( $belts[$i]["hidden"] == 2 ){
+					$icon = "fa fa-eye";
+					$link = "?v={$_GET["v"]}&show={$belts[$i]["id"]}";
+					$hide = direction("Show","إظهار");
+				}else{
+					$icon = "fa fa-eye-slash";
+					$link = "?v={$_GET["v"]}&hide={$belts[$i]["id"]}";
+					$hide = direction("Hide","إخفاء");
+				}
+				?>
+				<tr>
+				<td>
+				<input name="rank[]" class="form-control" type="number" value="<?php echo $counter ?>">
+				<input name="id[]" class="form-control" type="hidden" value="<?php echo $belts[$i]["id"] ?>">
+				</td>
+				<td id="enTitle<?php echo $belts[$i]["id"]?>" ><?php echo $belts[$i]["enTitle"] ?></td>
+				<td id="arTitle<?php echo $belts[$i]["id"]?>" ><?php echo $belts[$i]["arTitle"] ?></td>
+				<td class="text-nowrap">
+					<a id="<?php echo $belts[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i>
+					</a>
+					<a href="<?php echo $link ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo $hide ?>"> <i class="<?php echo $icon ?> text-inverse m-r-10"></i>
+					</a>
+					<a href="<?php echo "?v={$_GET["v"]}&delId={$belts[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i>
+					</a>
+				<div style="display:none"><label id="hidden<?php echo $belts[$i]["id"]?>"><?php echo $belts[$i]["hidden"] ?></label></div>		
+				</td>
+				</tr>
+				<?php
+			}
 		}
 		?>
 		</tbody>
@@ -162,16 +162,12 @@ if( isset($_POST["enTitle"]) ){
 <script>
 	$(document).on("click",".edit", function(){
 		var id = $(this).attr("id");
-		var link = $("#link"+id).html();
-		var title = $("#title"+id).html();
+		var enTitle = $("#enTitle"+id).html();
+		var arTitle = $("#arTitle"+id).html();
 		var hidden = $("#hidden"+id).html();
-		var logo = $("#logo"+id).html();
-		$("input[type=file]").prop("required",false);
-		$("input[name=link]").val(link);
+		$("input[name=enTitle]").val(enTitle);
 		$("input[name=update]").val(id);
-		$("input[name=title]").val(title);
+		$("input[name=arTitle]").val(arTitle);
 		$("select[name=hidden]").val(hidden);
-		$("#logoImg").attr("src","../logos/"+logo);
-		$("#images").attr("style","margin-top:10px;display:block");
 	})
 </script>
