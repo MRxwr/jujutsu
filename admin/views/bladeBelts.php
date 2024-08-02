@@ -114,7 +114,7 @@ if( isset($_POST["enTitle"]) ){
 		
 		<tbody>
 		<?php 
-		if( $belts = selectDB("belts","`status` = '0' ORDER BY `rank` ASC") ){
+		if( $belts = selectDB('belts',"`status` = '0' ORDER BY `rank` ASC") ){
 		for( $i = 0; $i < sizeof($belts); $i++ ){
 		$counter = $i + 1;
 		if ( $belts[$i]["hidden"] == 2 ){
