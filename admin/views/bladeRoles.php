@@ -101,7 +101,7 @@ if( isset($_POST["enTitle"]) ){
 		
 		<tbody>
 		<?php 
-		if( $roles = selectDB("roles","`status` = '0' ORDER BY `id` ASC") ){
+		if( $roles = selectDB("roles","`status` = '0' AND `id` != '5' ORDER BY `id` ASC") ){
 		for( $i = 0; $i < sizeof($roles); $i++ ){
             if ( $roles[$i]["hidden"] == 2 ){
                 $icon = "fa fa-eye";
