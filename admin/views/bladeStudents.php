@@ -86,9 +86,9 @@ if( isset($_POST["fullName"]) ){
 				<label><?php echo direction("Nationality","الجنسية") ?></label>
 				<select name="nationalityId" class="form-control">
 					<?php
-						$belts = selectDB('cities',"`status` = '0' AND `hidden` = '0'");
-						for( $i = 0; $i < sizeof($belts); $i++ ){
-							echo "<option value='{$belts[$i]["id"]}'>".direction($belts[$i]["enTitle"],$belts[$i]["arTitle"])."</option>";
+						$nationality = selectDB('cities',"`status` = '0' GROUP BY `CountryName`");
+						for( $i = 0; $i < sizeof($nationality); $i++ ){
+							echo "<option value='{$nationality[$i]["id"]}'>{$nationality[$i]["CountryName"]}</option>";
 						}
 					?>
 				</select>
