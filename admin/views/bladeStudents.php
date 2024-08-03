@@ -225,13 +225,13 @@ if( isset($_POST["fullName"]) ){
 				<tr>
 				<td style="text-wrap: wrap;"><?php echo $students[$i]["fullName"] ?></td>
 				<td class="text-nowrap">
-					<a href="<?php echo "?v=StudentMore&id={$students[$i]["id"]}" ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("More","المزيد") ?>"><i class="fa fa-plus text-inverse m-r-10"></i>
+					<a href="<?php echo "?v=StudentMore&id={$students[$i]["id"]}" ?>" style="align-content: center;" class="btn btn-default btn-circle btn-xs" data-toggle="tooltip" data-original-title="<?php echo direction("More","المزيد") ?>"><i class="fa fa-plus text-inverse m-r-10"></i>
 					</a>
-					<a id="<?php echo $students[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i>
+					<a id="<?php echo $students[$i]["id"] ?>" style="align-content: center;" class="btn btn-default btn-circle btn-xs" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i>
 					</a>
-					<a href="<?php echo $link ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo $hide ?>"> <i class="<?php echo $icon ?> text-inverse m-r-10"></i>
+					<a href="<?php echo $link ?>" style="align-content: center;" class="btn btn-default btn-circle btn-xs" data-toggle="tooltip" data-original-title="<?php echo $hide ?>"> <i class="<?php echo $icon ?> text-inverse m-r-10"></i>
 					</a>
-					<a href="<?php echo "?v={$_GET["v"]}&delId={$students[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i>
+					<a href="<?php echo "?v={$_GET["v"]}&delId={$students[$i]["id"]}" ?>" style="align-content: center;" class="btn btn-default btn-circle btn-xs" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i>
 					</a>
 				<div style="display:none">
 					<label id="fullName<?php echo $students[$i]["id"]?>"><?php echo $students[$i]["fullName"] ?></label>
