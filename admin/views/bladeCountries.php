@@ -27,7 +27,6 @@ if( isset($_GET["show"]) && !empty($_GET["show"]) ){
 	<table class="table display responsive product-overview mb-30" id="myTable">
 		<thead>
 		<tr>
-		<th>#</th>
 		<th><?php echo direction("Country","البلد") ?></th>
 		<th class="text-nowrap"><?php echo direction("Actions","الخيارات") ?></th>
 		</tr>
