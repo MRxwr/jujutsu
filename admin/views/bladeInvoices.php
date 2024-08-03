@@ -33,7 +33,6 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) ){
 		<th><?php echo direction("Date","التاريخ") ?></th>
 		<th><?php echo direction("Invoice#","رقم الفاتورة") ?></th>
 		<th><?php echo direction("Name","الاسم") ?></th>
-		<th><?php echo direction("Mobile","الهاتف") ?></th>
 		<th><?php echo direction("Session","الكلاس") ?></th>
 		<th><?php echo direction("Price","السعر") ?></th>
 		<th><?php echo direction("Status","الحالة") ?></th>
@@ -59,7 +58,6 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) ){
 				<td><?php echo $Invoices[$i]["date"] ?></td>
 				<td><a href="?v=InvoiceDetails&id=<?php echo $Invoices[$i]["id"] ?>" target="_blank"><?php echo str_pad($Invoices[$i]["id"], 5, '0', STR_PAD_LEFT) ?></td>
 				<td><?php echo $student[0]["fullName"] ?></td>
-				<td><?php echo $student[0]["mobile"] ?></td>
 				<td><?php echo direction("{$session[0]["enTitle"]}",$session[0]["arTitle"]) ?></td>
 				<td><?php echo $Invoices[$i]["price"] ?></td>
 				<td><?php echo $status ?></td>		
@@ -68,6 +66,9 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) ){
 					<a href="<?php echo "?v=Invoices&id={$Invoices[$i]["id"]}&status=0" ?>" style="align-content: center;" class="btn btn-default btn-xs"><?php echo direction("Pending","قيد الانتظار") ?></a>
 					<a href="<?php echo "?v=Invoices&id={$Invoices[$i]["id"]}&status=1" ?>" style="align-content: center;" class="btn btn-success btn-xs"><?php echo direction("Paid","مدفوعة") ?></a>
 					<a href="<?php echo "?v=Invoices&id={$Invoices[$i]["id"]}&status=2" ?>" style="align-content: center;" class="btn btn-danger btn-xs"><?php echo direction("Cancelled","ملغية") ?></a>
+                    <div style="display:none">
+                        <label><?php echo $student[0]["mobile"] ?></label>
+                    </div>	
                 </td>
 				</tr>
 				<?php
