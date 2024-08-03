@@ -86,9 +86,10 @@ if( isset($_POST["fullName"]) ){
 				<label><?php echo direction("Nationality","الجنسية") ?></label>
 				<select name="nationalityId" class="form-control">
 					<?php
-						$nationality = selectDB('cities',"`status` = '0' GROUP BY `CountryName` ORDER BY `CountryName` ASC");
-						for( $i = 0; $i < sizeof($nationality); $i++ ){
-							echo "<option value='{$nationality[$i]["id"]}'>{$nationality[$i]["CountryName"]}</option>";
+						if($nationality = selectDB('cities',"`status` = '0' GROUP BY `CountryName` ORDER BY `CountryName` ASC")){
+							for( $i = 0; $i < sizeof($nationality); $i++ ){
+								echo "<option value='{$nationality[$i]["id"]}'>{$nationality[$i]["CountryName"]}</option>";
+							}
 						}
 					?>
 				</select>
@@ -98,9 +99,10 @@ if( isset($_POST["fullName"]) ){
 				<label><?php echo direction("Belt","الحزام") ?></label>
 				<select name="beltId" class="form-control">
 					<?php
-						$belts = selectDB('belts',"`status` = '0' AND `hidden` = '0'");
-						for( $i = 0; $i < sizeof($belts); $i++ ){
-							echo "<option value='{$belts[$i]["id"]}'>".direction($belts[$i]["enTitle"],$belts[$i]["arTitle"])."</option>";
+						if( $belts = selectDB('belts',"`status` = '0' AND `hidden` = '0'") ){
+							for( $i = 0; $i < sizeof($belts); $i++ ){
+								echo "<option value='{$belts[$i]["id"]}'>".direction($belts[$i]["enTitle"],$belts[$i]["arTitle"])."</option>";
+							}
 						}
 					?>
 				</select>

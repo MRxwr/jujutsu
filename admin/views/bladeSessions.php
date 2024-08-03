@@ -6,7 +6,7 @@ if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
 }
 
 if( isset($_GET["show"]) && !empty($_GET["show"]) ){
-	if( updateDB('sessions',array('hidden'=> '1'),"`id` = '{$_GET["show"]}'") ){
+	if( updateDB('sessions',array('hidden'=> '0'),"`id` = '{$_GET["show"]}'") ){
 		header("LOCATION: ?v=Sessions");
 	}
 }
