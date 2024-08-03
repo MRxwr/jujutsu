@@ -156,7 +156,6 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) && $student = selectDBNew("student
 		<?php 
 		if( $Invoices = selectDBNew('invoices',[$_GET["id"]],"`studentId` = ?","`id` DESC") ){
 			for( $i = 0; $i < sizeof($Invoices); $i++ ){
-				$Invocie = selectDB('invoices',"`id` = '{$Invoices[$i]["id"]}'");
                 if( $Invoices[$i]["status"] == 1 ){
                     $status = direction("Paid","مدفوعة");
                 }elseif( $Invoices[$i]["status"] == 2 ){
