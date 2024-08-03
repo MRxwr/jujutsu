@@ -28,6 +28,20 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) && $student = selectDBNew("student
 }else{
     header("LOCATION: ?v=Students");
 }
+
+if( isset($_GET["status"]) ){
+	$id = $_GET["id"];
+	$_POST["status"] = $_GET["status"];
+	if( updateDB('invoices', $_POST, "`id` = '{$id}'") ){
+		header("LOCATION: ?v=StudentMore&id={$student[0]["id"]}");
+	}else{
+	?>
+	<script>
+		alert("Could not process your request, Please try again.");
+	</script>
+	<?php
+	}
+}
 ?>
 <div class="row">			
 <div class="col-sm-12">
@@ -170,7 +184,7 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) && $student = selectDBNew("student
                 }
 				?>
 				<tr>
-				<td><a href="?v=InvoiceDetails&id=<?php echo $Invoices[$i]["id"] ?>" target="_blank"><?php echo str_pad($Invoices[$i]["id"], 4, '0', STR_PAD_LEFT) ?></td>
+				<td><?php echo str_pad($Invoices[$i]["id"], 4, '0', STR_PAD_LEFT) ?></td>
                 <td><?php echo substr($Invoices[$i]["date"],0,10) ?></td>
 				<td><?php echo $student[0]["fullName"] ?></td>
 				<td><?php echo direction("{$session[0]["enTitle"]}",$session[0]["arTitle"]) ?></td>
@@ -178,9 +192,9 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) && $student = selectDBNew("student
 				<td><?php echo $status ?></td>		
 				</td>
                 <td class="text-nowrap">
-					<a href="<?php echo "?v=Invoices&id={$Invoices[$i]["id"]}&status=0" ?>" style="align-content: center;" class="btn btn-default btn-xs"><?php echo direction("Pending","قيد الانتظار") ?></a>
-					<a href="<?php echo "?v=Invoices&id={$Invoices[$i]["id"]}&status=1" ?>" style="align-content: center;" class="btn btn-success btn-xs"><?php echo direction("Paid","مدفوعة") ?></a>
-					<a href="<?php echo "?v=Invoices&id={$Invoices[$i]["id"]}&status=2" ?>" style="align-content: center;" class="btn btn-danger btn-xs"><?php echo direction("Cancelled","ملغية") ?></a>
+					<a href="<?php echo "?v=StudentMore&id={$Invoices[$i]["id"]}&status=0" ?>" style="align-content: center;" class="btn btn-default btn-xs"><?php echo direction("Pending","قيد الانتظار") ?></a>
+					<a href="<?php echo "?v=StudentMore&id={$Invoices[$i]["id"]}&status=1" ?>" style="align-content: center;" class="btn btn-success btn-xs"><?php echo direction("Paid","مدفوعة") ?></a>
+					<a href="<?php echo "?v=StudentMore&id={$Invoices[$i]["id"]}&status=2" ?>" style="align-content: center;" class="btn btn-danger btn-xs"><?php echo direction("Cancelled","ملغية") ?></a>
                     <div style="display:none">
                         <label><?php echo $student[0]["mobile"] ?></label>
                     </div>	
