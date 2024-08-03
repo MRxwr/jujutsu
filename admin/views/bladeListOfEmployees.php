@@ -98,10 +98,10 @@ if( isset($_POST["fullName"]) ){
 			</div>
 			
 			<div class="col-md-6">
-			<label><?php echo direction("Shop","المحل") ?></label>
+			<label><?php echo direction("Branch","الفرع") ?></label>
 			<select name="shopId" class="form-control">
 				<?php
-				if( $shop = selectDB("shops","`status` = '0'") ){
+				if( $shop = selectDB("branches","`status` = '0'") ){
 					for( $i = 0; $i < sizeof($shop); $i++ ){
 						$shopTitle = direction($shop[$i]["enTitle"],$shop[$i]["arTitle"]);
 						echo "<option value='{$shop[$i]["id"]}'>{$shopTitle}</option>";
@@ -149,7 +149,7 @@ if( isset($_POST["fullName"]) ){
 		
 		<tbody>
 		<?php 
-		if( $employees = selectDB("employees","`status` = '0' ") ){
+		if( $employees = selectDB("employees","`status` = '0' AND `empType` != '5'") ){
 			for( $i = 0; $i < sizeof($employees); $i++ ){
 				$counter = $i + 1;
 				if ( $employees[$i]["hidden"] == 2 ){
@@ -171,7 +171,7 @@ if( isset($_POST["fullName"]) ){
 				}
 
 				
-				if( $shop = selectDB("shops","`id` = '{$employees[$i]["shopId"]}'") ){
+				if( $shop = selectDB("branches","`id` = '{$employees[$i]["shopId"]}'") ){
 					$shop = direction($shop[0]["enTitle"],$shop[0]["arTitle"]);
 				}else{
 					$shop = "";
