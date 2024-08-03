@@ -226,8 +226,10 @@ if( isset($_POST["fullName"]) ){
 				<tr>
 				<td style="text-wrap: wrap;"><?php echo $students[$i]["fullName"] ?></td>
 				<td>
-					<div class="btn btn-default btn-xs"><?php echo direction("Sessions","الكلاسات") ?></div>
-					<div class="btn btn-default btn-xs"><?php echo direction("Invoices","الفواتير") ?></div>
+					<a id="<?php echo $students[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Sessions","الكلاسات") ?>"><i class="fa fa-list text-inverse m-r-10"></i>
+					</a>
+					<a id="<?php echo $students[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Invoices","الفواتير") ?>"><i class="fa fa-log text-inverse m-r-10"></i>
+					</a>
 				</td>
 				<td class="text-nowrap">
 					<a id="<?php echo $students[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i>
