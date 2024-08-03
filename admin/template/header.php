@@ -1,6 +1,7 @@
 <?php
 ob_start();
 require ("includes/checksouthead.php");
+if( !isset($_GET["v"]) ){ $_GET["v"] = "Home"; }
 ?>
 <!DOCTYPE html>
 <html lang="en">
