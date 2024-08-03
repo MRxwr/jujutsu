@@ -86,7 +86,7 @@ if( isset($_POST["sessionId"]) ){
 		
 		<tbody>
 		<?php 
-		if( $students = selectDBNew('studentMore',[$_POST["id"]],"`sessionId` = ?","") ){
+		if( isset($_POST["id"]) && !empty($_POST["id"]) && $students = selectDBNew('studentMore',[$_POST["id"]],"`sessionId` = ?","") ){
 			for( $i = 0; $i < sizeof($students); $i++ ){
 				$counter = $i + 1;
                 $student = selectDB('students',"`id` = '{$students[$i]["studentId"]}' ");
