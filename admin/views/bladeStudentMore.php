@@ -128,6 +128,7 @@ if( isset($_POST["sessionId"]) ){
 	$(document).on("click",".edit", function(){
 		var id = $(this).attr("id");
         $("input[name=update]").val(id);
+        $("input[type=submit]").val(<?php echo direction("Update","حدث") ?>);
 
         $("select[name=sessionId]").val($("#sessionId"+id).html()).focus();
 		$("input[name=total]").val($("#total"+id).html());
