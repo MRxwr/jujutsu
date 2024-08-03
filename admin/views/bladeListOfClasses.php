@@ -89,9 +89,10 @@ if( isset($_POST["sessionId"]) ){
 		if( $students = selectDBNew('studentMore',[$_POST["id"]],"`sessionId` = ?","") ){
 			for( $i = 0; $i < sizeof($students); $i++ ){
 				$counter = $i + 1;
+                $student = selectDB('students',"`id` = '{$students[$i]["studentId"]}' ");
 				?>
 				<tr>
-				<td style="text-wrap: wrap;"><?php echo $students[$i]["fullName"] ?></td>
+				<td style="text-wrap: wrap;"><?php echo $student[0]["fullName"] ?></td>
 				<td class="text-nowrap">
 					<input type="checkbox" class="form-control" name="list[]" value="<?php echo $students[$i]["id"] ?>">
 				<div style="display:none">
