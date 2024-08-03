@@ -139,7 +139,7 @@ if( isset($_POST["enTitle"]) ){
 		<th><?php echo direction("Arabic Title","الرابط") ?></th>
 		<th><?php echo direction("Icon","الصورة") ?></th>
         <th><?php echo direction("File Name","الرابط") ?></th>
-		<th class="text-nowrap"><?php echo direction("الخيارات","Actions") ?></th>
+		<th class="text-nowrap"><?php echo direction("Actions","الخيارات") ?></th>
 		</tr>
 		</thead>
 		

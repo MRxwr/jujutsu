@@ -202,7 +202,7 @@ if( isset($_POST["fullName"]) ){
 		<thead>
 		<tr>
 		<th><?php echo direction("Name","الإسم") ?></th>
-		<th class="text-nowrap"><?php echo direction("الخيارات","Actions") ?></th>
+		<th class="text-nowrap"><?php echo direction("Actions","الخيارات") ?></th>
 		</tr>
 		</thead>
 		
