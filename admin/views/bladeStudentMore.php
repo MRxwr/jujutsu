@@ -91,7 +91,7 @@ if( isset($_POST["sessionId"]) ){
 		
 		<tbody>
 		<?php 
-		if( $sessions = selectDBNew('studentMore',[0],"`status` = ?","`rank` ASC") ){
+		if( $sessions = selectDBNew('studentMore',[0],"`status` = ?","`id` DESC") ){
 			for( $i = 0; $i < sizeof($sessions); $i++ ){
 				$session = selectDB('sessions',"`id` = '{$sessions[$i]["sessionId"]}'");
 				?>
