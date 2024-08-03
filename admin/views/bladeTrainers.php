@@ -1,18 +1,18 @@
 <?php 
 if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
-	if( updateDB('trainers',array('hidden'=> '2'),"`id` = '{$_GET["hide"]}'") ){
+	if( updateDB('employees',array('hidden'=> '2'),"`id` = '{$_GET["hide"]}'") ){
 		header("LOCATION: ?v=Trainers");
 	}
 }
 
 if( isset($_GET["show"]) && !empty($_GET["show"]) ){
-	if( updateDB('trainers',array('hidden'=> '0'),"`id` = '{$_GET["show"]}'") ){
+	if( updateDB('employees',array('hidden'=> '0'),"`id` = '{$_GET["show"]}'") ){
 		header("LOCATION: ?v=Trainers");
 	}
 }
 
 if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
-	if( updateDB('trainers',array('status'=> '1'),"`id` = '{$_GET["delId"]}'") ){
+	if( updateDB('employees',array('status'=> '1'),"`id` = '{$_GET["delId"]}'") ){
 		header("LOCATION: ?v=Trainers");
 	}
 }
@@ -22,7 +22,7 @@ if( isset($_POST["fullName"]) ){
 	unset($_POST["update"]);
 	if ( $id == 0 ){
 		$_POST["password"] = sha1($_POST["password"]);
-		if( insertDB('trainers', $_POST) ){
+		if( insertDB('employees', $_POST) ){
 			header("LOCATION: ?v=Trainers");
 		}else{
 		?>
@@ -35,10 +35,10 @@ if( isset($_POST["fullName"]) ){
 		if( !empty($_POST["password"]) ){
 			$_POST["password"] = sha1($_POST["password"]);
 		}else{
-			$password = selectDB('trainers',"`id` = '{$id}'");
+			$password = selectDB('employees',"`id` = '{$id}'");
 			$_POST["password"] = $password[0]["password"];
 		}
-		if( updateDB('trainers', $_POST, "`id` = '{$id}'") ){
+		if( updateDB('employees', $_POST, "`id` = '{$id}'") ){
 			header("LOCATION: ?v=Trainers");
 		}else{
 		?>
@@ -100,6 +100,7 @@ if( isset($_POST["fullName"]) ){
 			<div class="col-md-12" style="margin-top:10px">
 			<input type="submit" class="btn btn-primary" value="<?php echo direction("Submit","أرسل") ?>">
 			<input type="hidden" name="update" value="0">
+			<input type="hidden" name="empType" value="5">
 			</div>
 		</div>
 	</form>
@@ -134,7 +135,7 @@ if( isset($_POST["fullName"]) ){
 		
 		<tbody>
 		<?php 
-		if( $trainers = selectDB('trainers',"`status` = '0'") ){
+		if( $trainers = selectDB('employees',"`status` = '0' AND `empType` = '5'") ){
 			for( $i = 0; $i < sizeof($trainers); $i++ ){
 				if ( $trainers[$i]["hidden"] == 2 ){
 					$icon = "fa fa-unlock";
