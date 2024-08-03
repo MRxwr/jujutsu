@@ -30,8 +30,8 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) ){
 	<table class="table display responsive product-overview mb-30" id="myTable">
 		<thead>
 		<tr>
+        <th>#</th>
 		<th><?php echo direction("Date","التاريخ") ?></th>
-		<th><?php echo direction("Invoice#","رقم الفاتورة") ?></th>
 		<th><?php echo direction("Name","الاسم") ?></th>
 		<th><?php echo direction("Session","الكلاس") ?></th>
 		<th><?php echo direction("Price","السعر") ?></th>
@@ -55,8 +55,8 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) ){
                 }
 				?>
 				<tr>
-				<td><?php echo substr($Invoices[$i]["date"],0,10) ?></td>
 				<td><a href="?v=InvoiceDetails&id=<?php echo $Invoices[$i]["id"] ?>" target="_blank"><?php echo str_pad($Invoices[$i]["id"], 5, '0', STR_PAD_LEFT) ?></td>
+                <td><?php echo substr($Invoices[$i]["date"],0,10) ?></td>
 				<td><?php echo $student[0]["fullName"] ?></td>
 				<td><?php echo direction("{$session[0]["enTitle"]}",$session[0]["arTitle"]) ?></td>
 				<td><?php echo $Invoices[$i]["price"] ?></td>
