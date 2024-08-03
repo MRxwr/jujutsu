@@ -1,12 +1,12 @@
 <?php 
 if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
-	if( updateDB('belts',array('hidden'=> '2'),"`id` = '{$_GET["hide"]}'") ){
+	if( updateDB('belts',array('status'=> '2'),"`id` = '{$_GET["hide"]}'") ){
 		header("LOCATION: ?v=Countries");
 	}
 }
 
 if( isset($_GET["show"]) && !empty($_GET["show"]) ){
-	if( updateDB('belts',array('hidden'=> '0'),"`id` = '{$_GET["show"]}'") ){
+	if( updateDB('belts',array('status'=> '0'),"`id` = '{$_GET["show"]}'") ){
 		header("LOCATION: ?v=Countries");
 	}
 }
@@ -38,7 +38,7 @@ if( isset($_GET["show"]) && !empty($_GET["show"]) ){
 		if( $cities = selectDB('cities',"`id` != '0' GROUP BY `CountryName` ORDER BY `CountryName` ASC") ){
 			for( $i = 0; $i < sizeof($cities); $i++ ){
 				$counter = $i + 1;
-				if ( $cities[$i]["hidden"] == 2 ){
+				if ( $cities[$i]["status"] == 2 ){
 					$icon = "fa fa-eye";
 					$link = "?v={$_GET["v"]}&show={$cities[$i]["id"]}";
 					$hide = direction("Show","إظهار");
