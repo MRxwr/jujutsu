@@ -58,7 +58,7 @@ if( isset($_POST["sessionId"]) ){
 			    <input type="number" step="1" min="0" name="total" class="form-control" value="12" required>
 			</div>
 			
-			<div class="col-md-6" style="margin-top:10px">
+			<div class="col-md-12" style="margin-top:10px">
 			<input type="submit" class="btn btn-primary" value="<?php echo direction("Submit","أرسل") ?>">
 			<input type="studentId" name="update" value="<?php echo $_GET["id"] ?>">
 			</div>
