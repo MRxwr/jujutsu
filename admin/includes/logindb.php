@@ -7,8 +7,12 @@ if( $employee = selectDBNew("employees",[$_POST["email"],sha1($_POST["password"]
 	$GenerateNewCC = md5(rand());
 	if( updateDB("employees",array("keepMeAlive"=>$GenerateNewCC),"`id` = '{$employee[0]["id"]}'") ){
 		$_SESSION[$cookieSession."A"] = $email;
-		header("Location: ../index.php?v=Home");
-		setcookie($cookieSession."A", $GenerateNewCC, time() + (86400*30 ), "/");die();
+		setcookie($cookieSession."A", $GenerateNewCC, time() + (86400*30 ), "/");
+		if( $employee[0]["empType"] == 5 ){
+			header("Location: ../index.php?v=ListOfClasses");die();
+		}else{
+			header("Location: ../index.php?v=Home");die();
+		}
 	}
 }else{
 	header("Location: ../login.php?error=p");die();
