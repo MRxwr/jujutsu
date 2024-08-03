@@ -224,7 +224,7 @@ if( isset($_POST["fullName"]) ){
 				
 				?>
 				<tr>
-				<td><?php echo $students[$i]["fullName"] ?></td>
+				<td style="text-wrap: wrap;"><?php echo $students[$i]["fullName"] ?></td>
 				<td><?php echo $students[$i]["mobile"] ?></td>
 				<td class="text-nowrap">
 					<a id="<?php echo $students[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i>
