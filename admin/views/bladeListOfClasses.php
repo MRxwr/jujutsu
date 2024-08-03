@@ -90,6 +90,7 @@ if( isset($_POST["sessionId"]) ){
 			for( $i = 0; $i < sizeof($students); $i++ ){
 				$counter = $i + 1;
                 $student = selectDB('students',"`id` = '{$students[$i]["studentId"]}' ");
+                $attendance = selectDB('attendance',"`studentId` = '{$students[$i]["studentId"]}' AND `sessionId` = '{$_POST["id"]}' AND `date` LIKE '%".date("Y-m-d")."%'");
 				?>
 				<tr>
 				<td style="text-wrap: wrap;"><?php echo $student[0]["fullName"] ?></td>
