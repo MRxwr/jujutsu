@@ -228,7 +228,7 @@ if( isset($_POST["fullName"]) ){
 				<td>
 					<a id="<?php echo $students[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Sessions","الكلاسات") ?>"><i class="fa fa-list text-inverse m-r-10"></i>
 					</a>
-					<a id="<?php echo $students[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Invoices","الفواتير") ?>"><i class="fa fa-log text-inverse m-r-10"></i>
+					<a id="<?php echo $students[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Invoices","الفواتير") ?>"><i class="fa fa-book text-inverse m-r-10"></i>
 					</a>
 				</td>
 				<td class="text-nowrap">
