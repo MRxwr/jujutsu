@@ -235,7 +235,7 @@ if (  isset($_COOKIE["CREATEkwLANG"]) && $_COOKIE["CREATEkwLANG"] == "AR" ){
 	$contactText ="اتصل بنا";
 	$inStoreText = "الإستلام من المتجر";
 	$pleaseFillForGiftsText = "كرت الهدية (إختياري)";
-	$settingsDTime = $row["dTimeArabic"];
+	$settingsDTime = "";;
 	$fromText = "من";
 	$toText = "إلى";
 	$msgText = "الرسالة";
