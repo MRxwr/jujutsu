@@ -37,7 +37,7 @@ if( isset($_POST["sessionId"]) ){
 </div>
 <div class="panel-wrapper collapse in">
 <div class="panel-body">
-	<form class="" method="GET" action="?v=ListOfClasses" enctype="multipart/form-data">
+	<form class="" method="GET" action="index.php?v=ListOfClasses" enctype="multipart/form-data">
 		<div class="row m-0">
 			<div class="col-md-6">
 			    <label><?php echo direction("Session","الكلاس") ?></label>
