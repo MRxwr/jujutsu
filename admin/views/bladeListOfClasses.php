@@ -37,11 +37,11 @@ if( isset($_POST["sessionId"]) ){
 </div>
 <div class="panel-wrapper collapse in">
 <div class="panel-body">
-	<form class="" method="GET" action="" enctype="multipart/form-data">
+	<form class="" method="GET" action="?v=ListOfClasses" enctype="multipart/form-data">
 		<div class="row m-0">
 			<div class="col-md-6">
 			    <label><?php echo direction("Session","الكلاس") ?></label>
-				<select name="id" class="form-control" onclick="this.form.submit()">
+				<select name="id" class="form-control">
 					<?php
 						if( $sessions = selectDB('sessions',"`status` = '0' AND `hidden` = '0'") ){
 							for( $i = 0; $i < sizeof($sessions); $i++ ){
