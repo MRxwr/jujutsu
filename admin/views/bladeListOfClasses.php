@@ -37,7 +37,7 @@ if( isset($_POST["sessionId"]) ){
 </div>
 <div class="panel-wrapper collapse in">
 <div class="panel-body">
-	<form class="" method="GET" action="index.php?v=ListOfClasses" enctype="multipart/form-data">
+	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
 			<div class="col-md-6">
 			    <label><?php echo direction("Session","الكلاس") ?></label>
@@ -75,7 +75,7 @@ if( isset($_POST["sessionId"]) ){
 <div class="table-wrap mt-40">
 <div class="table-responsive">
     <from method="POST" action="" enctype="multipart/form-data">
-    <input type="hidden" name="sessionId" value="<?php echo $_GET["id"] ?>">
+    <input type="hidden" name="sessionId" value="<?php echo $_POST["id"] ?>">
 	<table class="table display responsive product-overview mb-30" id="myTable">
 		<thead>
 		<tr>
@@ -86,7 +86,7 @@ if( isset($_POST["sessionId"]) ){
 		
 		<tbody>
 		<?php 
-		if( $students = selectDBNew('studentMore',[$_GET["id"]],"`sessionId` = ?","") ){
+		if( $students = selectDBNew('studentMore',[$_POST["id"]],"`sessionId` = ?","") ){
 			for( $i = 0; $i < sizeof($students); $i++ ){
 				$counter = $i + 1;
 				?>
