@@ -39,11 +39,11 @@ if( isset($_GET["show"]) && !empty($_GET["show"]) ){
 				$counter = $i + 1;
 				if ( $cities[$i]["status"] == 2 ){
 					$icon = "fa fa-eye";
-					$link = "?v={$_GET["v"]}&show={$cities[$i]["id"]}";
+					$link = "?v={$_GET["v"]}&show={$cities[$i]["CountryName"]}";
 					$hide = direction("Show","إظهار");
 				}else{
 					$icon = "fa fa-eye-slash";
-					$link = "?v={$_GET["v"]}&hide={$cities[$i]["id"]}";
+					$link = "?v={$_GET["v"]}&hide={$cities[$i]["CountryName"]}";
 					$hide = direction("Hide","إخفاء");
 				}
 				?>
