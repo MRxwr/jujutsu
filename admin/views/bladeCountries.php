@@ -6,7 +6,7 @@ if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
 }
 
 if( isset($_GET["show"]) && !empty($_GET["show"]) ){
-	if( updateDB('cities',array('status'=> '0'),"`CountryName` LIKE '%{$_GET["show"]}'%") ){
+	if( updateDB('cities',array('status'=> '0'),"`CountryName` LIKE '%{$_GET["show"]}%'") ){
 		header("LOCATION: ?v=Countries");
 	}
 }
