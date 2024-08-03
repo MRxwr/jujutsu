@@ -37,15 +37,15 @@ if( isset($_POST["sessionId"]) ){
 </div>
 <div class="panel-wrapper collapse in">
 <div class="panel-body">
-	<form class="" method="POST" action="" enctype="multipart/form-data">
+	<form class="" method="GET" action="" enctype="multipart/form-data">
 		<div class="row m-0">
 			<div class="col-md-6">
 			    <label><?php echo direction("Session","الكلاس") ?></label>
-				<select name="sessionId" class="form-control">
+				<select name="id" class="form-control" onclick="this.form.submit()">
 					<?php
-						if( $Invoices = selectDB('sessions',"`status` = '0' AND `hidden` = '0'") ){
-							for( $i = 0; $i < sizeof($Invoices); $i++ ){
-								echo "<option value='{$Invoices[$i]["id"]}'>".direction($Invoices[$i]["enTitle"],$Invoices[$i]["arTitle"])."</option>";
+						if( $sessions = selectDB('sessions',"`status` = '0' AND `hidden` = '0'") ){
+							for( $i = 0; $i < sizeof($sessions); $i++ ){
+								echo "<option value='{$sessions[$i]["id"]}'>".direction($sessions[$i]["enTitle"],$sessions[$i]["arTitle"])."</option>";
 							}
 						}
 					?>
