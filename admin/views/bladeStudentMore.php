@@ -134,7 +134,7 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) && $student = selectDBNew("student
 <div class="panel panel-default card-view">
 <div class="panel-heading">
 <div class="pull-left">
-<h6 class="panel-title txt-dark"><?php echo direction("List of Student Invoices","قائمة فواتير الطالب ") . " : " . $student[0]["fullName"] ?></h6>
+<h6 class="panel-title txt-dark"><?php echo direction("List of Invoices","قائمة الفواتير") ?></h6>
 </div>
 <div class="clearfix"></div>
 </div>
@@ -142,20 +142,25 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) && $student = selectDBNew("student
 <div class="panel-body"> 
 <div class="table-wrap mt-40">
 <div class="table-responsive">
-	<table class="table display responsive product-overview mb-30" id="myTable1">
+	<table class="table display responsive product-overview mb-30" id="myTable">
 		<thead>
 		<tr>
-		<th>#</th>
+        <th>#</th>
 		<th><?php echo direction("Date","التاريخ") ?></th>
+		<th><?php echo direction("Name","الاسم") ?></th>
+		<th><?php echo direction("Session","الكلاس") ?></th>
 		<th><?php echo direction("Price","السعر") ?></th>
 		<th><?php echo direction("Status","الحالة") ?></th>
+		<th><?php echo direction("Actions","الخيارات") ?></th>
 		</tr>
 		</thead>
 		
 		<tbody>
 		<?php 
-		if( $Invoices = selectDBNew('invoices',[$_GET["id"]],"`studentId` = ?","`id` DESC") ){
+		if( $Invoices = selectDBNew('invoices',[$_GET["id"]],"`studenId` != ?","`id` DESC") ){
 			for( $i = 0; $i < sizeof($Invoices); $i++ ){
+				$session = selectDB('sessions',"`id` = '{$Invoices[$i]["sessionId"]}'");
+				$student = selectDB('students',"`id` = '{$Invoices[$i]["studentId"]}'");
                 if( $Invoices[$i]["status"] == 1 ){
                     $status = direction("Paid","مدفوعة");
                 }elseif( $Invoices[$i]["status"] == 2 ){
@@ -166,10 +171,20 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) && $student = selectDBNew("student
 				?>
 				<tr>
 				<td><a href="?v=InvoiceDetails&id=<?php echo $Invoices[$i]["id"] ?>" target="_blank"><?php echo str_pad($Invoices[$i]["id"], 4, '0', STR_PAD_LEFT) ?></td>
-				<td><?php echo substr($Invoices[$i]["date"],0,10) ?></td>
+                <td><?php echo substr($Invoices[$i]["date"],0,10) ?></td>
+				<td><?php echo $student[0]["fullName"] ?></td>
+				<td><?php echo direction("{$session[0]["enTitle"]}",$session[0]["arTitle"]) ?></td>
 				<td><?php echo $Invoices[$i]["price"] ?></td>
 				<td><?php echo $status ?></td>		
 				</td>
+                <td class="text-nowrap">
+					<a href="<?php echo "?v=Invoices&id={$Invoices[$i]["id"]}&status=0" ?>" style="align-content: center;" class="btn btn-default btn-xs"><?php echo direction("Pending","قيد الانتظار") ?></a>
+					<a href="<?php echo "?v=Invoices&id={$Invoices[$i]["id"]}&status=1" ?>" style="align-content: center;" class="btn btn-success btn-xs"><?php echo direction("Paid","مدفوعة") ?></a>
+					<a href="<?php echo "?v=Invoices&id={$Invoices[$i]["id"]}&status=2" ?>" style="align-content: center;" class="btn btn-danger btn-xs"><?php echo direction("Cancelled","ملغية") ?></a>
+                    <div style="display:none">
+                        <label><?php echo $student[0]["mobile"] ?></label>
+                    </div>	
+                </td>
 				</tr>
 				<?php
 			}
@@ -184,6 +199,7 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) && $student = selectDBNew("student
 </div>
 </div>
 </div>
+
 </div>
 <script>
 	$(document).on("click",".edit", function(){
