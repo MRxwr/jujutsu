@@ -202,7 +202,6 @@ if( isset($_POST["fullName"]) ){
 		<thead>
 		<tr>
 		<th><?php echo direction("Name","الإسم") ?></th>
-		<th><?php echo direction("More","المزيد") ?></th>
 		<th class="text-nowrap"><?php echo direction("الخيارات","Actions") ?></th>
 		</tr>
 		</thead>
@@ -225,13 +224,9 @@ if( isset($_POST["fullName"]) ){
 				?>
 				<tr>
 				<td style="text-wrap: wrap;"><?php echo $students[$i]["fullName"] ?></td>
-				<td>
-					<a id="<?php echo $students[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Sessions","الكلاسات") ?>"><i class="fa fa-list text-inverse m-r-10"></i>
-					</a>
-					<a id="<?php echo $students[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Invoices","الفواتير") ?>"><i class="fa fa-book text-inverse m-r-10"></i>
-					</a>
-				</td>
 				<td class="text-nowrap">
+					<a href="<?php echo "?v=StudentMore&id={$students[$i]["id"]}" ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("More","المزيد") ?>"><i class="fa fa-plus text-inverse m-r-10"></i>
+					</a>
 					<a id="<?php echo $students[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i>
 					</a>
 					<a href="<?php echo $link ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo $hide ?>"> <i class="<?php echo $icon ?> text-inverse m-r-10"></i>
