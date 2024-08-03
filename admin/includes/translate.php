@@ -251,7 +251,7 @@ if (  isset($_COOKIE["CREATEkwLANG"]) && $_COOKIE["CREATEkwLANG"] == "AR" ){
 	$fromText = "From";
 	$toText = "To";
 	$msgText = "Message";
-	$settingsDTime = $row["dTime"];
+	$settingsDTime = "";
 	$pleaseFillForGiftsText = "Gift card (Optional)";
 	$inStoreText = "Pick up";
 	$showText = "Show";
