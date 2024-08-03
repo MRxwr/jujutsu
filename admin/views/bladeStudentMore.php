@@ -128,7 +128,7 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) && $student = selectDBNew("student
 </div>
 </div>
 </div>
-</div>
+
 
 <div class="col-sm-12">
 <div class="panel panel-default card-view">
