@@ -1,6 +1,6 @@
 <?php 
 if( isset($_GET["id"]) && !empty($_GET["id"]) ){
-	$id = $_POST["id"];
+	$id = $_GET["id"];
     $_POST["status"] = $_GET["status"];
     if( updateDB('invoices', $_POST, "`id` = '{$id}'") ){
         header("LOCATION: ?v=Invoices");
