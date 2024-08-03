@@ -1,12 +1,10 @@
 <?php 
 if( isset($_POST["sessionId"]) ){
 	$id = $_POST["update"];
-    $studentId = $_POST["studentId"];
 	unset($_POST["update"]);
-	unset($_POST["studentId"]);
 	if ( $id == 0 ){
 		if( insertDB('studentMore', $_POST) ){
-			header("LOCATION: ?v=StudentMore&id={$studentId}");
+			header("LOCATION: ?v=StudentMore&id={$_POST["studentId"]}");
 		}else{
 		?>
 		<script>
@@ -16,7 +14,7 @@ if( isset($_POST["sessionId"]) ){
 		}
 	}else{
 		if( updateDB('studentMore', $_POST, "`id` = '{$id}'") ){
-			header("LOCATION: ?v=StudentMore&id={$studentId}");
+			header("LOCATION: ?v=StudentMore&id={$_POST["studentId"]}");
 		}else{
 		?>
 		<script>
