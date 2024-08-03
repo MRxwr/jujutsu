@@ -24,13 +24,17 @@ if( isset($_POST["sessionId"]) ){
 		}
 	}
 }
+if( isset($_GET["id"]) && !empty($_GET["id"]) && $student = selectDBNew("students",[$_GET["id"]],"`id` = ?","") ){
+}else{
+    header("LOCATION: ?v=Students");
+}
 ?>
 <div class="row">			
 <div class="col-sm-12">
 <div class="panel panel-default card-view">
 <div class="panel-heading">
 <div class="pull-left">
-	<h6 class="panel-title txt-dark"><?php echo direction("Session Details","تفاصيل الكلاس") ?></h6>
+	<h6 class="panel-title txt-dark"><?php echo direction("Session Details","تفاصيل الكلاس") . " : " . $student[0]["fullName"]?></h6>
 </div>
 	<div class="clearfix"></div>
 </div>
@@ -73,7 +77,7 @@ if( isset($_POST["sessionId"]) ){
 <div class="panel panel-default card-view">
 <div class="panel-heading">
 <div class="pull-left">
-<h6 class="panel-title txt-dark"><?php echo direction("List of Student Sessions","قائمة كلاسات الطالب") ?></h6>
+<h6 class="panel-title txt-dark"><?php echo direction("List of Student Sessions","قائمة كلاسات الطالب") . " : " . $student[0]["fullName"] ?></h6>
 </div>
 <div class="clearfix"></div>
 </div>
