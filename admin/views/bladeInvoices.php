@@ -40,7 +40,7 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) ){
 		
 		<tbody>
 		<?php 
-		if( $Invoices = selectDBNew('invoices',[0],"`status` != ?","`id` DESC") ){
+		if( $Invoices = selectDBNew('invoices',[0],"`id` != ?","`id` DESC") ){
 			for( $i = 0; $i < sizeof($Invoices); $i++ ){
 				$Invocie = selectDB('invoices',"`id` = '{$Invoices[$i]["id"]}'");
                 if( $Invoices[$i]["status"] == 1 ){
