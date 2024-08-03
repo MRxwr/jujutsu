@@ -202,10 +202,7 @@ if( isset($_POST["fullName"]) ){
 		<thead>
 		<tr>
 		<th><?php echo direction("Name","الإسم") ?></th>
-		<th><?php echo direction("Email","الإيميل") ?></th>
 		<th><?php echo direction("Mobile","الهاتف") ?></th>
-		<th><?php echo direction("Type","النوع") ?></th>
-		<th><?php echo direction("Shop","المحل") ?></th>
 		<th class="text-nowrap"><?php echo direction("الخيارات","Actions") ?></th>
 		</tr>
 		</thead>
