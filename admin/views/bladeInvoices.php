@@ -27,7 +27,7 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) ){
 <div class="panel-body"> 
 <div class="table-wrap mt-40">
 <div class="table-responsive">
-	<table class="table display responsive product-overview mb-30" id="myTable1">
+	<table class="table display responsive product-overview mb-30" id="myTable">
 		<thead>
 		<tr>
 		<th><?php echo direction("Date","التاريخ") ?></th>
