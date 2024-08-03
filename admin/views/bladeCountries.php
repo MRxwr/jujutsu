@@ -1,12 +1,12 @@
 <?php 
 if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
-	if( updateDB('belts',array('status'=> '2'),"`id` = '{$_GET["hide"]}'") ){
+	if( updateDB('cities',array('status'=> '2'),"`id` = '{$_GET["hide"]}'") ){
 		header("LOCATION: ?v=Countries");
 	}
 }
 
 if( isset($_GET["show"]) && !empty($_GET["show"]) ){
-	if( updateDB('belts',array('status'=> '0'),"`id` = '{$_GET["show"]}'") ){
+	if( updateDB('cities',array('status'=> '0'),"`id` = '{$_GET["show"]}'") ){
 		header("LOCATION: ?v=Countries");
 	}
 }
