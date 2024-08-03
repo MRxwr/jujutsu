@@ -157,7 +157,7 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) && $student = selectDBNew("student
 		
 		<tbody>
 		<?php 
-		if( $Invoices = selectDBNew('invoices',[$_GET["id"]],"`studenId` != ?","`id` DESC") ){
+		if( $Invoices = selectDBNew('invoices',[$_GET["id"]],"`studentId` != ?","`id` DESC") ){
 			for( $i = 0; $i < sizeof($Invoices); $i++ ){
 				$session = selectDB('sessions',"`id` = '{$Invoices[$i]["sessionId"]}'");
 				$student = selectDB('students',"`id` = '{$Invoices[$i]["studentId"]}'");
