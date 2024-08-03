@@ -86,7 +86,7 @@ if( isset($_POST["fullName"]) ){
 				<label><?php echo direction("Nationality","الجنسية") ?></label>
 				<select name="nationalityId" class="form-control">
 					<?php
-						$nationality = selectDB('cities',"`status` = '0' GROUP BY `CountryName`");
+						$nationality = selectDB('cities',"`status` = '0' GROUP BY `CountryName` ORDER BY `CountryName` ASC");
 						for( $i = 0; $i < sizeof($nationality); $i++ ){
 							echo "<option value='{$nationality[$i]["id"]}'>{$nationality[$i]["CountryName"]}</option>";
 						}
@@ -131,6 +131,7 @@ if( isset($_POST["fullName"]) ){
 					<option value='0'><?php echo direction("Both","كلا الوالدين") ?></option>
 					<option value='1'><?php echo direction("Mother","الأم") ?></option>
 					<option value='2'><?php echo direction("Father","الاب") ?></option>
+					<option value='3'><?php echo direction("Alone","وحيدا") ?></option>
 				</select>
 			</div>
 
@@ -224,44 +225,35 @@ if( isset($_POST["fullName"]) ){
 					$hide = direction("Lock","قفل الحساب");
 				}
 				
-				if ( $students[$i]["empType"] == 0 ){
-					$type = "Admin";
-				}elseif( $students[$i]["empType"] == 1 ){
-					$type = "Employee";
-				}elseif( $students[$i]["empType"] == 2 ){
-					$type = "POS";
-				}
-
-				
-				if( $shop = selectDB("shops","`id` = '{$students[$i]["shopId"]}'") ){
-					$shop = direction($shop[0]["enTitle"],$shop[0]["arTitle"]);
-				}else{
-					$shop = "";
-				}
-				if( $employee = selectDB("roles","`id` = '{$students[$i]["empType"]}'") ){
-					$employee = direction($employee[0]["enTitle"],$employee[0]["arTitle"]);
-				}else{
-					$employee = "";
-				}
-				
 				?>
 				<tr>
-				<td id="name<?php echo $students[$i]["id"]?>" ><?php echo $students[$i]["fullName"] ?></td>
-				<td id="email<?php echo $students[$i]["id"]?>" ><?php echo $students[$i]["email"] ?></td>
-				<td id="mobile<?php echo $students[$i]["id"]?>" ><?php echo $students[$i]["phone"] ?></td>
-				<td><?php echo $employee ?></td>
-				<td><?php echo $shop ?></td>
+				<td><?php echo $students[$i]["fullName"] ?></td>
+				<td><?php echo $students[$i]["mobile"] ?></td>
 				<td class="text-nowrap">
-				
-				<a id="<?php echo $students[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i>
-				</a>
-				<a href="<?php echo $link ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo $hide ?>"> <i class="<?php echo $icon ?> text-inverse m-r-10"></i>
-				</a>
-				<a href="<?php echo "?v={$_GET["v"]}&delId={$students[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i>
-				</a>
+					<a id="<?php echo $students[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i>
+					</a>
+					<a href="<?php echo $link ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo $hide ?>"> <i class="<?php echo $icon ?> text-inverse m-r-10"></i>
+					</a>
+					<a href="<?php echo "?v={$_GET["v"]}&delId={$students[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i>
+					</a>
 				<div style="display:none">
-					<label id="type<?php echo $students[$i]["id"]?>"><?php echo $students[$i]["empType"] ?></label>
-					<label id="shop<?php echo $students[$i]["id"]?>"><?php echo $students[$i]["shopId"] ?></label></div>				
+					<label id="fullName<?php echo $students[$i]["id"]?>"><?php echo $students[$i]["fullName"] ?></label>
+					<label id="mobile<?php echo $students[$i]["id"]?>"><?php echo $students[$i]["mobile"] ?></label>
+					<label id="civilId<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["civilId"] ?></label>					
+					<label id="dateOfBirth<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["dateOfBirth"] ?></label>					
+					<label id="subscription<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["subscription"] ?></label>					
+					<label id="nationalityId<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["nationalityId"] ?></label>					
+					<label id="beltId<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["beltId"] ?></label>			
+					<label id="strap<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["strap"] ?></label>			
+					<label id="maritalStatus<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["maritalStatus"] ?></label>			
+					<label id="livesWith<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["livesWith"] ?></label>			
+					<label id="surgery<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["surgery"] ?></label>			
+					<label id="mentionSurgery<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["mentionSurgery"] ?></label>			
+					<label id="injury<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["injury"] ?></label>			
+					<label id="mentionInjury<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["mentionInjury"] ?></label>			
+					<label id="sickness<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["sickness"] ?></label>			
+					<label id="mentionSickness<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["mentionSickness"] ?></label>			
+				</div>
 				</td>
 				</tr>
 				<?php
@@ -281,20 +273,24 @@ if( isset($_POST["fullName"]) ){
 <script>
 	$(document).on("click",".edit", function(){
 		var id = $(this).attr("id");
-		var email = $("#email"+id).html();
-		var name = $("#name"+id).html();
-		var mobile = $("#mobile"+id).html();
-		var type = $("#type"+id).html();
-		var shop = $("#shop"+id).html();
-		var logo = $("#logo"+id).html();
-		$("input[name=password]").prop("required",false);
-		$("input[name=email]").val(email);
-		$("input[name=phone]").val(mobile);
 		$("input[name=update]").val(id);
-		$("input[name=fullName]").val(name);
-		$("input[name=fullName]").focus();
-		$("select[name=empType]").val(type);
-		$("select[name=shopId]").val(shop);
+
+		$("input[name=fullName]").val($("#fullName"+id).html()).focus();
+		$("input[name=civilId]").val($("#civilId"+id).html());
+		$("input[name=dateOfBirth]").val($("#dateOfBirth"+id).html());
+		$("input[name=subscription]").val($("#subscription"+id).html());
+		$("input[name=mobile]").val($("#mobile"+id).html());
+		$("input[name=mentionSurgery]").val($("#mentionSurgery"+id).html());
+		$("input[name=mentionInjury]").val($("#mentionInjury"+id).html());
+		$("input[name=mentionSickness]").val($("#mentionSickness"+id).html());
+		$("select[name=nationalityId]").val($("#nationalityId"+id).html());
+		$("select[name=beltId]").val($("#beltId"+id).html());
+		$("select[name=strap]").val($("#strap"+id).html());
+		$("select[name=maritalStatus]").val($("#maritalStatus"+id).html());
+		$("select[name=livesWith]").val($("#livesWith"+id).html());
+		$("select[name=surgery]").val($("#surgery"+id).html());
+		$("select[name=injury]").val($("#injury"+id).html());
+		$("select[name=sickness]").val($("#sickness"+id).html());
 	})
 </script>
 
