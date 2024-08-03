@@ -81,10 +81,22 @@ if( isset($_POST["fullName"]) ){
 				<label><?php echo direction("Subscription Fees","الرسوم الاشتراك") ?></label>
 				<input type="number" min="0" step="0.1" name="subscription" class="form-control" required>
 			</div>
+
+			<div class="col-md-6">
+				<label><?php echo direction("Nationality","الجنسية") ?></label>
+				<select name="nationalityId" class="form-control">
+					<?php
+						$belts = selectDB('cities',"`status` = '0' AND `hidden` = '0'");
+						for( $i = 0; $i < sizeof($belts); $i++ ){
+							echo "<option value='{$belts[$i]["id"]}'>".direction($belts[$i]["enTitle"],$belts[$i]["arTitle"])."</option>";
+						}
+					?>
+				</select>
+			</div>
             
 			<div class="col-md-6">
 				<label><?php echo direction("Belt","الحزام") ?></label>
-				<select name="belt" class="form-control">
+				<select name="beltId" class="form-control">
 					<?php
 						$belts = selectDB('belts',"`status` = '0' AND `hidden` = '0'");
 						for( $i = 0; $i < sizeof($belts); $i++ ){
@@ -97,22 +109,11 @@ if( isset($_POST["fullName"]) ){
 			<div class="col-md-6">
 				<label><?php echo direction("Strap","الستراب") ?></label>
 				<select name="strap" class="form-control">
+					<option value='0'>0</option>
 					<option value='1'>1</option>
 					<option value='2'>2</option>
 					<option value='3'>3</option>
 					<option value='4'>4</option>
-				</select>
-			</div>
-            
-			<div class="col-md-6">
-				<label><?php echo direction("Nationality","الجنسية") ?></label>
-				<select name="nationality" class="form-control">
-					<?php
-						$belts = selectDB('cities',"`status` = '0' AND `hidden` = '0'");
-						for( $i = 0; $i < sizeof($belts); $i++ ){
-							echo "<option value='{$belts[$i]["id"]}'>".direction($belts[$i]["enTitle"],$belts[$i]["arTitle"])."</option>";
-						}
-					?>
 				</select>
 			</div>
 
