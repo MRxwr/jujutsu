@@ -86,7 +86,7 @@ if( isset($_POST["sessionId"]) ){
 		
 		<tbody>
 		<?php 
-		if( $students = selectDB('studentMore',"`sessionId` = '{$_GET["id"]}'") ){
+		if( $students = selectDBNew('studentMore',[$_GET["id"]],"`sessionId` = ?","") ){
 			for( $i = 0; $i < sizeof($students); $i++ ){
 				$counter = $i + 1;
 				?>
