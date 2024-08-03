@@ -55,7 +55,7 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) ){
                 }
 				?>
 				<tr>
-				<td><a href="?v=InvoiceDetails&id=<?php echo $Invoices[$i]["id"] ?>" target="_blank"><?php echo str_pad($Invoices[$i]["id"], 5, '0', STR_PAD_LEFT) ?></td>
+				<td><a href="?v=InvoiceDetails&id=<?php echo $Invoices[$i]["id"] ?>" target="_blank"><?php echo str_pad($Invoices[$i]["id"], 4, '0', STR_PAD_LEFT) ?></td>
                 <td><?php echo substr($Invoices[$i]["date"],0,10) ?></td>
 				<td><?php echo $student[0]["fullName"] ?></td>
 				<td><?php echo direction("{$session[0]["enTitle"]}",$session[0]["arTitle"]) ?></td>
