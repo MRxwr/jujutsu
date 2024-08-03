@@ -168,7 +168,7 @@ if( isset($_GET["id"]) && !empty($_GET["id"]) && $student = selectDBNew("student
 				?>
 				<tr>
 				<td><?php echo $Invoices[$i]["date"] ?></td>
-				<td><a href="?v=InvoiceDetails&id=<?php echo $Invoices[$i]["id"] ?>" target="_blank"><?php echo $Invoices[$i]["id"] ?></td>
+				<td><a href="?v=InvoiceDetails&id=<?php echo $Invoices[$i]["id"] ?>" target="_blank"><?php echo str_pad($Invoices[$i]["id"], 5, '0', STR_PAD_LEFT) ?></td>
 				<td><?php echo $Invoices[$i]["price"] ?></td>
 				<td><?php echo $status ?></td>		
 				</td>
