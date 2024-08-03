@@ -84,6 +84,7 @@ if( isset($_POST["sessionId"]) ){
 	<table class="table display responsive product-overview mb-30" id="myTable">
 		<thead>
 		<tr>
+		<th>#</th>
 		<th><?php echo direction("Session","الكلاس") ?></th>
 		<th><?php echo direction("Total Sessions","مجموع الكلاسات") ?></th>
 		<th class="text-nowrap"><?php echo direction("Actions","الخيارات") ?></th>
@@ -97,6 +98,7 @@ if( isset($_POST["sessionId"]) ){
 				$session = selectDB('sessions',"`id` = '{$sessions[$i]["sessionId"]}'");
 				?>
 				<tr>
+				<td><?php echo str_pad(($y = $i + 1), 1, '0', STR_PAD_LEFT) ?></td>
 				<td><?php echo direction($session[0]["enTitle"],$session[0]["arTitle"]) ?></td>
 				<td><?php echo $sessions[$i]["total"] ?></td>
 				<td class="text-nowrap">
