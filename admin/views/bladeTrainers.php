@@ -84,7 +84,7 @@ if( isset($_POST["fullName"]) ){
 			</div>
 			
 			<div class="col-md-6">
-			<label><?php echo direction("Shop","المحل") ?></label>
+			<label><?php echo direction("Branch","الفرع") ?></label>
 			<select name="shopId" class="form-control">
 				<?php
 				if( $branch = selectDB("branches","`status` = '0' AND `hidden` = '0'") ){
