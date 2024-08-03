@@ -44,7 +44,7 @@ if( isset($_POST["sessionId"]) ){
 			    <label><?php echo direction("Session","الكلاس") ?></label>
 				<select name="sessionId" class="form-control">
 					<?php
-						if( $sessions = selectDB('studentMore',"`status` = '0' AND `hidden` = '0'") ){
+						if( $sessions = selectDB('sessions',"`status` = '0' AND `hidden` = '0'") ){
 							for( $i = 0; $i < sizeof($sessions); $i++ ){
 								echo "<option value='{$sessions[$i]["id"]}'>".direction($sessions[$i]["enTitle"],$sessions[$i]["arTitle"])."</option>";
 							}
