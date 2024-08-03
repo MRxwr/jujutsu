@@ -202,7 +202,7 @@ if( isset($_POST["fullName"]) ){
 		<thead>
 		<tr>
 		<th><?php echo direction("Name","الإسم") ?></th>
-		<th><?php echo direction("Mobile","الهاتف") ?></th>
+		<th><?php echo direction("More","المزيد") ?></th>
 		<th class="text-nowrap"><?php echo direction("الخيارات","Actions") ?></th>
 		</tr>
 		</thead>
@@ -225,7 +225,10 @@ if( isset($_POST["fullName"]) ){
 				?>
 				<tr>
 				<td style="text-wrap: wrap;"><?php echo $students[$i]["fullName"] ?></td>
-				<td><?php echo $students[$i]["mobile"] ?></td>
+				<td>
+					<div class="btn btn-default btn-xs"><?php echo direction("Sessions","الكلاسات") ?></div>
+					<div class="btn btn-default btn-xs"><?php echo direction("Invoices","الفواتير") ?></div>
+				</td>
 				<td class="text-nowrap">
 					<a id="<?php echo $students[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i>
 					</a>
