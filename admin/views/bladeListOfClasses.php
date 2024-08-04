@@ -11,6 +11,7 @@ if( isset($_POST["sessionId"]) ){
 		<?php
 		}
 	}else{
+		var_dump($_POST);
 		if( insertDB('attendance', $_POST) ){
 			header("LOCATION: ?v=ListOfClasses");
 		}else{
