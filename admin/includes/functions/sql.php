@@ -35,7 +35,7 @@ function selectDBNew($table, $placeHolders, $where, $order){
     $where = str_replace($check, "", $where);
     $sql = "SELECT * FROM `{$table}`";
     if(!empty($where)) {
-        $sql .= " WHERE {$where}";
+        echo $sql .= " WHERE {$where}";
     }
     if(!empty($order)) {
         $sql .= " ORDER BY {$order}";
