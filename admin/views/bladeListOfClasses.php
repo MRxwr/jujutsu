@@ -91,25 +91,29 @@ if( isset($_POST["sessionId"]) ){
 		<tbody>
 		<?php 
 		if( isset($_POST["id"]) && !empty($_POST["id"]) && $students = selectDBNew('studentMore',[$_POST["id"]],"`sessionId` = ? AND `total` > 0","") ){
+			if( $attendance = selectDBNew('attendance',[$userID,$_POST["id"],date("Y-m-d")],"`tainerId` = ? AND `sessionId` = ? AND `date` LIKE '%?%'","") ){
+				$attendance = $attendance[0]["attendance"];
+				$studentList = $attendance[0]["studentList"];
+			}else{
+				$attendance = [];
+				$studentList = [];
+				$checkedAttended = "";
+				$checkedAbsent = "";
+			}
 			for( $i = 0; $i < sizeof($students); $i++ ){
 				$counter = $i + 1;
                 $student = selectDB('students',"`id` = '{$students[$i]["studentId"]}' ");
-                if( $attendance = selectDBNew('attendance',[$userID,$_POST["id"],date("Y-m-d")],"`tainerId` = ? AND `sessionId` = ? AND `date` LIKE '%?%'","") ){
-					$attended = $attendance[0]["attended"];
-					$absent = $attendance[0]["absent"];
-				}else{
-					$attended = [];
-					$absent = [];
-				}
-				$checkedAttended = ( in_array($student[0]["id"],$attended) ) ? "checked" : "";
-				$checkedAbsent = ( in_array($student[0]["id"],$absent) ) ? "checked" : "";
+				$key = array_search($student[0]["id"], $studentList);
+				$checkedAttended = ( $attendance[$key] == 1 ) ? "checked" : "";
+				$checkedAbsent = ( $attendance[$key] == 0 ) ? "checked" : "";
 				?>
 				<tr>
 				<td style="text-wrap: wrap;"><?php echo $student[0]["fullName"] ?></td>
 				<td class="text-nowrap">
-					<input type="radio" id="list<?php echo $student[0]["id"] ?>" class="form-control" name="attended[]" value="<?php echo $student[0]["id"] ?>" <?php echo $checkedAttended ?> >Yes
-					<input type="radio" id="list<?php echo $student[0]["id"] ?>"  class="form-control" name="absent[]" value="<?php echo $student[0]["id"] ?>" <?php echo $checkedAbsent ?> >No
-				<div style="display:none">
+					<input type="hidden" name="studentList[]" value="<?php echo $student[0]["id"] ?>" >
+					<input type="radio" name="attendance[]" value="1" <?php echo $checkedAttended ?> >Yes
+					<input type="radio" name="attendance[]" value="0" <?php echo $checkedAbsent ?> >No
+				<div style="display:none">  
 					<label id="fullName<?php echo $students[$i]["id"]?>"><?php echo $students[$i]["fullName"] ?></label>
 					<label id="mobile<?php echo $students[$i]["id"]?>"><?php echo $students[$i]["mobile"] ?></label>
 					<label id="civilId<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["civilId"] ?></label>					
