@@ -62,7 +62,7 @@ if( isset($_POST["sessionId"]) ){
 </div>
 </div>
 
-<from method="POST" action="" enctype="multipart/form-data">
+<form method="POST" action="" enctype="multipart/form-data">
 <input type="hidden" name="trainerId" value="<?php echo $userID ?>">
 <input type="hidden" name="sessionId" value="<?php echo $_POST["id"] ?>">
 
@@ -152,7 +152,7 @@ if( isset($_POST["sessionId"]) ){
 </div>
 </div>
 </div>
-</from>
+</form>
 </div>
 <script>
 	$(document).on("click",".edit", function(){
