@@ -92,7 +92,7 @@ if( isset($_POST["sessionId"]) ){
 		<tbody>
 		<?php 
 		if( isset($_POST["id"]) && !empty($_POST["id"]) && $students = selectDBNew('studentMore',[$_POST["id"]],"`sessionId` = ? AND `total` > 0","") ){
-			if( $attendances = selectDBNew('attendance',[$userID,$_POST["id"],date("Y-m-d")],"`trainerId` = ? AND `sessionId` = ? AND DATE(`date`) = ?","") ){
+			if( $attendances = selectDBNew('attendance',[$userID,$_POST["id"],date("Y-m-d")],"`trainerId` = ? AND `sessionId` = ? AND `date` LIKE CONCAT('%',?,'%')","") ){
 				$attendance = json_decode($attendances[0]["attendance"],true);
 				$studentList = json_decode($attendances[0]["studentList"],true);
 			}else{
@@ -104,6 +104,7 @@ if( isset($_POST["sessionId"]) ){
 			for( $i = 0; $i < sizeof($students); $i++ ){
 				$counter = $i + 1;
                 $student = selectDBNew('students',[$students[$i]["studentId"]],"`id` = ?","");
+				var_dump($key = array_search($student[0]["id"], $studentList));
 				if ( $key = array_search($student[0]["id"], $studentList) ){
 					$checkedAttended = ( $attendances[$key] == 1 ) ? "checked" : "";
 					$checkedAbsent = ( $attendances[$key] == 0 ) ? "checked" : "";
