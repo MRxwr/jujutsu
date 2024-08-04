@@ -53,8 +53,8 @@ if( isset($_POST["sessionId"]) ){
 				</select>
 			</div>
 			
-			<div class="col-md-6" style="margin-top:10px">
-			<input type="submit" class="btn btn-primary" value="<?php echo direction("Show","اعرض") ?>">
+			<div class="col-md-6">
+			<input type="submit" class="btn btn-primary" style="width: 100%;" value="<?php echo direction("Show","اعرض") ?>">
 			</div>
 		</div>
 	</form>
