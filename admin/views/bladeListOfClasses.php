@@ -95,16 +95,20 @@ if( isset($_POST["sessionId"]) ){
 				$counter = $i + 1;
                 $student = selectDB('students',"`id` = '{$students[$i]["studentId"]}' ");
                 if( $attendance = selectDBNew('attendance',[$userID,$_POST["id"],date("Y-m-d")],"`tainerId` = ? AND `sessionId` = ? AND `date` LIKE '%?%'","") ){
-					$list = $attendance[0]["list"];
+					$attended = $attendance[0]["attended"];
+					$absent = $attendance[0]["absent"];
 				}else{
-					$List = [];
+					$attended = [];
+					$absent = [];
 				}
-				$checked = ( in_array($student[0]["id"],$list) ) ? "checked" : "";
+				$checkedAttended = ( in_array($student[0]["id"],$attended) ) ? "checked" : "";
+				$checkedAbsent = ( in_array($student[0]["id"],$absent) ) ? "checked" : "";
 				?>
 				<tr>
 				<td style="text-wrap: wrap;"><?php echo $student[0]["fullName"] ?></td>
 				<td class="text-nowrap">
-					<input type="checkbox" class="form-control" name="list[]" value="<?php echo $student[0]["id"] ?>" <?php echo $checked ?> >
+					<input type="checkbox" class="form-control" name="attended[]" value="<?php echo $student[0]["id"] ?>" <?php echo $checkedAttended ?> >Yes
+					<input type="checkbox" class="form-control" name="absent[]" value="<?php echo $student[0]["id"] ?>" <?php echo $checkedAbsent ?> >No
 				<div style="display:none">
 					<label id="fullName<?php echo $students[$i]["id"]?>"><?php echo $students[$i]["fullName"] ?></label>
 					<label id="mobile<?php echo $students[$i]["id"]?>"><?php echo $students[$i]["mobile"] ?></label>
