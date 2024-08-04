@@ -2,8 +2,8 @@
 if( isset($_POST["sessionId"]) ){
 	unset($_POST["myTable_length"]);
 	$_POST["studentList"] = json_encode($_POST["studentList"]);
-	$_POST["attendance"] = json_encode($_POST["studentList"]);
-	if ( $seesion = selectDBNew('attendance',[$userID,$_POST["sessionId"],date("Y-m-d")],"`tainerId` = ? AND `sessionId` = ? AND `date` LIKE '%?%'","") ){
+	$_POST["attendance"] = json_encode($_POST["attendance"]);
+	if ( $seesion = selectDBNew('attendance',[$userID,$_POST["sessionId"],date("Y-m-d")],"`tainerId` = ? AND `sessionId` = ? AND `date` LIKE CONCAT('%',?,'%')","") ){
 		if( updateDB('attendance', $_POST, "`id` = '{$seesion[0]["id"]}'") ){
 			header("LOCATION: ?v=ListOfClasses");
 		}else{
