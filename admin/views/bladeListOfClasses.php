@@ -1,6 +1,8 @@
 <?php 
 if( isset($_POST["sessionId"]) ){
 	unset($_POST["myTable_length"]);
+	$_POST["studentList"] = json_encode($_POST["studentList"]);
+	$_POST["attendance"] = json_encode($_POST["studentList"]);
 	if ( $seesion = selectDBNew('attendance',[$userID,$_POST["sessionId"],date("Y-m-d")],"`tainerId` = ? AND `sessionId` = ? AND `date` LIKE '%?%'","") ){
 		if( updateDB('attendance', $_POST, "`id` = '{$seesion[0]["id"]}'") ){
 			header("LOCATION: ?v=ListOfClasses");
@@ -12,7 +14,6 @@ if( isset($_POST["sessionId"]) ){
 		<?php
 		}
 	}else{
-		unset($_POST["myTable_length"]);
 		if( insertDB('attendance', $_POST) ){
 			header("LOCATION: ?v=ListOfClasses");
 		}else{
