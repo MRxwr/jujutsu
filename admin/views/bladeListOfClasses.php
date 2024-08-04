@@ -103,7 +103,7 @@ if( isset($_POST["sessionId"]) ){
 			}
 			for( $i = 0; $i < sizeof($students); $i++ ){
 				$counter = $i + 1;
-                $student = selectDB('students',"`id` = '{$students[$i]["studentId"]}' ");
+                $student = selectDBNew('students',[$students[$i]["studentId"]],"`id` = ?","");
 				if ( $key = array_search($student[0]["id"], $studentList) ){
 					$checkedAttended = ( $attendance[$key] == 1 ) ? "checked" : "";
 					$checkedAbsent = ( $attendance[$key] == 0 ) ? "checked" : "";
