@@ -40,7 +40,7 @@ if( isset($_POST["sessionId"]) ){
 <div class="panel-body">
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
-			<div class="col-md-6">
+			<div class="col-md-6 pb-5">
 			    <label><?php echo direction("Session","الكلاس") ?></label>
 				<select name="id" class="form-control">
 					<?php
@@ -161,7 +161,10 @@ if( isset($_POST["sessionId"]) ){
 </div>
 </div>
 </div>
-<div class="row pt-5 pd-5 text-center"><div class="col-md-6"><input type="text" name="note" class="form-control" placeholder="<?php echo direction("Notes","ملاحظات") ?>"></div><div class="col-md-6 pt-5"><button class="btn btn-primary"><?php echo direction("Submit","أرسل") ?></button></div></div>
+<div class="row pt-5 pb-5 text-center">
+	<div class="col-md-6 pb-5"><input type="text" name="note" class="form-control" placeholder="<?php echo direction("Notes","ملاحظات") ?>"></div>
+	<div class="col-md-6"><button class="btn btn-primary" style="width: 100%;"><?php echo direction("Submit","أرسل") ?></button></div>
+</div>
 <div class="clearfix"></div>
 </div>
 </div>
