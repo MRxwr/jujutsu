@@ -93,8 +93,9 @@ if( isset($_POST["sessionId"]) ){
 		<?php 
 		if( isset($_POST["id"]) && !empty($_POST["id"]) && $students = selectDBNew('studentMore',[$_POST["id"]],"`sessionId` = ? AND `total` > 0","") ){
 			if( $attendance = selectDBNew('attendance',[$userID,$_POST["id"],date("Y-m-d")],"`trainerId` = ? AND `sessionId` = ? AND DATE(`date`) = ?","") ){
-				$attendance = ($attendance[0]["attendance"]);
-				$studentList = [];// ($attendance[0]["studentList"]);
+				var_dump($attendance);
+				$attendance = $attendance[0]["attendance"];
+				$studentList = $attendance[0]["studentList"];
 			}else{
 				$attendance = [];
 				$studentList = [];
