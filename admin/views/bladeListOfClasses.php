@@ -92,7 +92,7 @@ if( isset($_POST["sessionId"]) ){
 		<tbody>
 		<?php 
 		if( isset($_POST["id"]) && !empty($_POST["id"]) && $students = selectDBNew('studentMore',[$_POST["id"]],"`sessionId` = ? AND `total` > 0","") ){
-			if( $attendances = selectDBNew('attendance',[$userID,$_POST["id"],date("Y-m-d")],"`trainerId` = ? AND `sessionId` = ? AND `date` LIKE CONCAT('%',?,'%')","") ){
+			if( $attendances = selectDBNew('attendance',[$userID,$_POST["id"],date("Y-m-d")],"`trainerId` = ? AND `sessionId` = ? AND DATE(`date`) = ?","") ){
 				$attendance = json_decode($attendances[0]["attendance"],true);
 				$studentList = json_decode($attendances[0]["studentList"],true);
 			}else{
