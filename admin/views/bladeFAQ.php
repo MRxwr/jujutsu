@@ -176,11 +176,13 @@ if( isset($_POST["enQuestion"]) ){
 <script>
 	$(document).on("click",".edit", function(){
 		var id = $(this).attr("id");
+		$("input[name=update]").val(id);
+		$("input[type=submit]").val("<?php echo direction("Update","حدث") ?>");
 		var enQuestion = $("#enQuestion"+id).html();
 		var arQuestion = $("#arQuestion"+id).html();
 		var enAnswer = $("#enAnswer"+id).html();
 		var arAnswer = $("#arAnswer"+id).html();
-		$("input[name=enQuestion]").val(enQuestion);
+		$("input[name=enQuestion]").val(enQuestion).focus();
 		$("input[name=arQuestion]").val(arQuestion);
 		$("input[name=enAnswer]").val(enAnswer);
 		$("input[name=arAnswer]").val(arAnswer);
