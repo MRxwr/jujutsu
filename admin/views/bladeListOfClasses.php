@@ -99,7 +99,7 @@ if( isset($_POST["sessionId"]) ){
 				}else{
 					$List = [];
 				}
-				$checked = ( in_array($students[$i]["id"],$list) ) ? "checked" : "";
+				$checked = ( in_array($student[0]["id"],$list) ) ? "checked" : "";
 				?>
 				<tr>
 				<td style="text-wrap: wrap;"><?php echo $student[0]["fullName"] ?></td>
