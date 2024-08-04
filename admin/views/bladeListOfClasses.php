@@ -1,10 +1,8 @@
 <?php 
 if( isset($_POST["sessionId"]) ){
-	$id = $_POST["update"];
-	unset($_POST["update"]);
-	if ( $id == 0 ){
-		if( insertDB('attendance', $_POST) ){
-			header("LOCATION: ?v=ListOfClasses&id={$_POST["studentId"]}");
+	if ( $seesion = selectDBNew('attendance',[$userID,$_POST["sessionId"],date("Y-m-d")],"`tainerId` = ? AND `sessionId` = ? AND `date` LIKE '%?%'","") ){
+		if( updateDB('attendance', $_POST, "`id` = '{$seesion[0]["id"]}'") ){
+			header("LOCATION: ?v=ListOfClasses");
 		}else{
 		?>
 		<script>
@@ -13,8 +11,8 @@ if( isset($_POST["sessionId"]) ){
 		<?php
 		}
 	}else{
-		if( updateDB('attendance', $_POST, "`id` = '{$id}'") ){
-			header("LOCATION: ?v=ListOfClasses&id={$_POST["studentId"]}");
+		if( insertDB('attendance', $_POST) ){
+			header("LOCATION: ?v=ListOfClasses");
 		}else{
 		?>
 		<script>
@@ -154,14 +152,3 @@ if( isset($_POST["sessionId"]) ){
 </div>
 </form>
 </div>
-<script>
-	$(document).on("click",".edit", function(){
-		var id = $(this).attr("id");
-        $("input[name=update]").val(id);
-        $("input[type=submit]").val("<?php echo direction("Update","حدث") ?>");
-
-        $("select[name=sessionId]").val($("#sessionId"+id).html()).focus();
-		$("input[name=total]").val($("#total"+id).html());
-		$("input[name=studentId]").val($("#studentId"+id).html());
-	})
-</script>
