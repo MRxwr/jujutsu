@@ -135,10 +135,16 @@ if( isset($_POST["sessionId"]) ){
 </div>
 </div>
 </div>
+<?php 
+if ( isset($_POST["id"]) && !empty($_POST["id"]) ){
+?>
 <div class="row pt-5 pb-5 text-center">
 	<div class="col-md-6 pb-5"><input type="text" name="note" class="form-control" placeholder="<?php echo direction("Notes","ملاحظات") ?>"></div>
 	<div class="col-md-6"><button class="btn btn-primary" style="width: 100%;"><?php echo direction("Submit","أرسل") ?></button></div>
 </div>
+<?php
+}
+?>
 <div class="clearfix"></div>
 </div>
 </div>
