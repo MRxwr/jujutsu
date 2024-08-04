@@ -75,6 +75,7 @@ if( isset($_POST["sessionId"]) ){
 <div class="table-wrap mt-40">
 <div class="table-responsive">
     <from method="POST" action="" enctype="multipart/form-data">
+    <input type="hidden" name="trainerId" value="<?php echo $userID ?>">
     <input type="hidden" name="sessionId" value="<?php echo $_POST["id"] ?>">
 	<table class="table display responsive product-overview mb-30" id="myTable">
 		<thead>
@@ -90,12 +91,17 @@ if( isset($_POST["sessionId"]) ){
 			for( $i = 0; $i < sizeof($students); $i++ ){
 				$counter = $i + 1;
                 $student = selectDB('students',"`id` = '{$students[$i]["studentId"]}' ");
-                $attendance = selectDB('attendance',"`studentId` = '{$students[$i]["studentId"]}' AND `sessionId` = '{$_POST["id"]}' AND `date` LIKE '%".date("Y-m-d")."%'");
+                if( $attendance = selectDB('attendance',"`tainerId` = '{$userID}' AND `sessionId` = '{$_POST["id"]}' AND `date` LIKE '%".date("Y-m-d")."%'") ){
+					$list = $attendance[0]["list"];
+				}else{
+					$List = [];
+				}
+				$checked = ( in_array($students[$i]["id"],$list) ) ? "checked" : "";
 				?>
 				<tr>
 				<td style="text-wrap: wrap;"><?php echo $student[0]["fullName"] ?></td>
 				<td class="text-nowrap">
-					<input type="checkbox" class="form-control" name="list[]" value="<?php echo $students[$i]["id"] ?>">
+					<input type="checkbox" class="form-control" name="list[]" value="<?php echo $students[$i]["id"] ?>" <?php echo $checked ?> >
 				<div style="display:none">
 					<label id="fullName<?php echo $students[$i]["id"]?>"><?php echo $students[$i]["fullName"] ?></label>
 					<label id="mobile<?php echo $students[$i]["id"]?>"><?php echo $students[$i]["mobile"] ?></label>
