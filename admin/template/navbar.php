@@ -39,7 +39,7 @@
 								$sql = "SELECT * 
 										FROM `logs` 
 										WHERE 
-										`username` LIKE '{$username}' ORDER BY `date` DESC";
+										`username` LIKE '{$username}' ORDER BY `date` DESC LIMIT 10";
 								$result = $dbconnect->query($sql);
 								$numberOfRows = $result->num_rows;
 							?>
