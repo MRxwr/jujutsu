@@ -69,49 +69,6 @@ function selectDBNew($table, $placeHolders, $where, $order){
     }
 }
 
-function selectDBNew2($table, $placeHolders, $where, $order){
-    GLOBAL $dbconnect;
-    $check = [';', '"'];
-    $where = str_replace($check, "", $where);
-    $sql = "SELECT * FROM `{$table}`";
-    if(!empty($where)) {
-        $sql .= " WHERE {$where}";
-    }
-    if(!empty($order)) {
-        $sql .= " ORDER BY {$order}";
-    }
-    
-    // Debug: Print the SQL query
-    echo "Debug - SQL Query: " . $sql . "\n";
-    echo "Debug - Placeholders: " . print_r($placeHolders, true) . "\n";
-
-    if($stmt = $dbconnect->prepare($sql)) {
-        $types = str_repeat('s', count($placeHolders));
-        $stmt->bind_param($types, ...$placeHolders);
-        
-        // Debug: Print any errors during execution
-        if (!$stmt->execute()) {
-            echo "Debug - Execute failed: (" . $stmt->errno . ") " . $stmt->error . "\n";
-            return array();
-        }
-        
-        $result = $stmt->get_result();
-        $array = array();
-        while ($row = $result->fetch_assoc()) {
-            $array[] = $row;
-        }
-        
-        // Debug: Print the number of rows returned
-        echo "Debug - Number of rows returned: " . count($array) . "\n";
-        
-        return $array;
-    } else {
-        // Debug: Print any errors during prepare
-        echo "Debug - Prepare failed: (" . $dbconnect->errno . ") " . $dbconnect->error . "\n";
-        return array();
-    }
-}
-
 function selectDB($table, $where){
     GLOBAL $dbconnect;
     $check = [';', '"'];
