@@ -77,7 +77,6 @@ if( isset($_POST["sessionId"]) ){
 </div>
 <div class="panel-wrapper collapse in">
 <div class="panel-body">
-<div class="row"><div class="col-6"><input type="text" name="note" class="form-control" placeholder="<?php echo direction("Notes","ملاحظات") ?>"></div><div class="col-6"><button class="btn btn-primary"><?php echo direction("Submit","أرسل") ?></button></div></div>
 <div class="table-wrap mt-40">
 <div class="table-responsive">
     
@@ -162,6 +161,7 @@ if( isset($_POST["sessionId"]) ){
 </div>
 </div>
 </div>
+<div class="row"><div class="col-md-6"><input type="text" name="note" class="form-control" placeholder="<?php echo direction("Notes","ملاحظات") ?>"></div><div class="col-md-6 p-1"><button class="btn btn-primary"><?php echo direction("Submit","أرسل") ?></button></div></div>
 </div>
 </div>
 </div>
