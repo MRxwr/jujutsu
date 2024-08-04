@@ -132,14 +132,14 @@ if( isset($_POST["sessionId"]) ){
 		</tbody>
 		
 	</table>
-    </from>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
     
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</from>
 </div>
 <script>
 	$(document).on("click",".edit", function(){
