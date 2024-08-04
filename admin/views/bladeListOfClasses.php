@@ -3,7 +3,7 @@ if( isset($_POST["sessionId"]) ){
 	unset($_POST["myTable_length"]);
 	$_POST["studentList"] = json_encode($_POST["studentList"]);
 	$_POST["attendance"] = json_encode($_POST["attendance"]);
-	if ( $seesion = selectDBNew('attendance',[$userID,$_POST["sessionId"],date("Y-m-d")],"`tainerId` = ? AND `sessionId` = ? AND `date` LIKE CONCAT('%',?,'%')","") ){
+	if ( $seesion = selectDBNew('attendance',[$userID,$_POST["sessionId"],date("Y-m-d")],"`trainerId` = ? AND `sessionId` = ? AND `date` LIKE CONCAT('%',?,'%')","") ){
 		if( updateDB('attendance', $_POST, "`id` = '{$seesion[0]["id"]}'") ){
 			header("LOCATION: ?v=ListOfClasses");
 		}else{
@@ -92,7 +92,7 @@ if( isset($_POST["sessionId"]) ){
 		<tbody>
 		<?php 
 		if( isset($_POST["id"]) && !empty($_POST["id"]) && $students = selectDBNew('studentMore',[$_POST["id"]],"`sessionId` = ? AND `total` > 0","") ){
-			if( $attendance = selectDBNew('attendance',[$userID,$_POST["id"],date("Y-m-d")],"`tainerId` = ? AND `sessionId` = ? AND `date` LIKE CONCAT('%',?,'%')","") ){
+			if( $attendance = selectDBNew('attendance',[$userID,$_POST["id"],date("Y-m-d")],"`trainerId` = ? AND `sessionId` = ? AND `date` LIKE CONCAT('%',?,'%')","") ){
 				$attendance = json_decode($attendance[0]["attendance"],true);
 				$studentList = json_decode($attendance[0]["studentList"],true);
 			}else{
