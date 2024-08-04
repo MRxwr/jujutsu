@@ -56,7 +56,6 @@ function selectDBNew($table, $placeHolders, $where, $order){
         $stmt->execute();
         $result = $stmt->get_result();
         $array = array();
-        var_dump($result);
         while ($row = $result->fetch_assoc()) {
             $array[] = $row;
         }
