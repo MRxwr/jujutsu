@@ -75,8 +75,6 @@ if( isset($_POST["sessionId"]) ){
 <div class="table-wrap mt-40">
 <div class="table-responsive">
     <from method="POST" action="" enctype="multipart/form-data">
-    <input type="hidden" name="trainerId" value="<?php echo $userID ?>">
-    <input type="hidden" name="sessionId" value="<?php echo $_POST["id"] ?>">
 	<table class="table display responsive product-overview mb-30" id="myTable">
 		<thead>
 		<tr>
@@ -129,13 +127,34 @@ if( isset($_POST["sessionId"]) ){
 		</tbody>
 		
 	</table>
-    </from>
+    
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
+
+<div class="col-sm-12">
+<div class="panel panel-default card-view">
+<div class="panel-heading">
+<div class="clearfix"></div>
+</div>
+<div class="panel-wrapper collapse in">
+<div class="panel-body">
+<div class="table-wrap mt-40">
+<div class="table-responsive">
+    <input type="hidden" name="trainerId" value="<?php echo $userID ?>">
+    <input type="hidden" name="sessionId" value="<?php echo $_POST["id"] ?>">
+	<button class="btn btn-primary" type="submit"><?php echo direction("Submit","إرسل") ?></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</from>
     
 </div>
 <script>
