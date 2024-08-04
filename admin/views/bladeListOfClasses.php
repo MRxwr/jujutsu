@@ -54,7 +54,7 @@ if( isset($_POST["sessionId"]) ){
 			</div>
 			
 			<div class="col-md-6" style="margin-top:10px">
-			<input type="submit" class="btn btn-primary" value="<?php echo direction("Submit","أرسل") ?>">
+			<input type="submit" class="btn btn-primary" value="<?php echo direction("Show","اعرض") ?>">
 			</div>
 		</div>
 	</form>
@@ -111,18 +111,10 @@ if( isset($_POST["sessionId"]) ){
 					$checkedAttended = "";
 					$checkedAbsent = "";
 				}
-				if( $student[0]["hidden"] == 2 ){
-					$notes .= " - " . direction("Suspended","إيقاف");
-				}
-				if( !empty($student[0]["mentionSurgery"]) ){
-					$notes .= " - {$student[0]["mentionSurgery"]}";
-				}
-				if( !empty($student[0]["mentionInjury"]) ){
-					$notes .= " - {$student[0]["mentionInjury"]}";
-				}
-				if( !empty($student[0]["mentionSickness"]) ){
-					$notes .= " - {$student[0]["mentionSickness"]}";
-				}
+				$notes .= ($student[0]["hidden"] == 2 ) ? " - " . direction("Suspended","إيقاف") : "";
+				$notes .= (!empty($student[0]["mentionInjury"])) ? " - {$student[0]["mentionSurgery"]}" : "";
+				$notes .= (!empty($student[0]["mentionInjury"])) ? " - {$student[0]["mentionInjury"]}" : "";
+				$notes .= (!empty($student[0]["mentionSickness"])) ? " - {$student[0]["mentionSickness"]}" : "";
 				?>
 				<tr>
 				<td style="text-wrap: wrap;"><?php echo $student[0]["fullName"] . $notes ?></td>
@@ -130,24 +122,6 @@ if( isset($_POST["sessionId"]) ){
 					<input type="hidden" name="studentList[]" value="<?php echo $student[0]["id"] ?>" >
 					<input type="radio" name="attendance[]" value="1" <?php echo $checkedAttended ?> >Yes
 					<input type="radio" name="attendance[]" value="0" <?php echo $checkedAbsent ?> >No
-				<div style="display:none">  
-					<label id="fullName<?php echo $student[0]["id"]?>"><?php echo $student[0]["fullName"] ?></label>
-					<label id="mobile<?php echo $student[0]["id"]?>"><?php echo $student[0]["mobile"] ?></label>
-					<label id="civilId<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["civilId"] ?></label>					
-					<label id="dateOfBirth<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["dateOfBirth"] ?></label>					
-					<label id="subscription<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["subscription"] ?></label>					
-					<label id="nationalityId<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["nationalityId"] ?></label>					
-					<label id="beltId<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["beltId"] ?></label>			
-					<label id="strap<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["strap"] ?></label>			
-					<label id="maritalStatus<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["maritalStatus"] ?></label>			
-					<label id="livesWith<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["livesWith"] ?></label>			
-					<label id="surgery<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["surgery"] ?></label>			
-					<label id="mentionSurgery<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["mentionSurgery"] ?></label>			
-					<label id="injury<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["injury"] ?></label>			
-					<label id="mentionInjury<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["mentionInjury"] ?></label>			
-					<label id="sickness<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["sickness"] ?></label>			
-					<label id="mentionSickness<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["mentionSickness"] ?></label>			
-				</div>
 				</td>
 				</tr>
 				<?php
