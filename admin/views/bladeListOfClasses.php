@@ -77,7 +77,7 @@ if( isset($_POST["sessionId"]) ){
 </div>
 <div class="panel-wrapper collapse in">
 <div class="panel-body">
-<div class="col-6"><input type="text" name="notes" class="form-control" placeholder="<?php echo direction("Notes","ملاحظات") ?>"></div><div class="col-6"><button class="btn btn-primary"><?php echo direction("Submit","أرسل") ?></button></div>
+<div class="col-6"><input type="text" name="note" class="form-control" placeholder="<?php echo direction("Notes","ملاحظات") ?>"></div><div class="col-6"><button class="btn btn-primary"><?php echo direction("Submit","أرسل") ?></button></div>
 <div class="table-wrap mt-40">
 <div class="table-responsive">
     
