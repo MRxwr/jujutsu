@@ -101,7 +101,6 @@ if( isset($_POST["sessionId"]) ){
 				$checkedAttended = "";
 				$checkedAbsent = "";
 			}
-			var_dump("hahahah121231");
 			for( $i = 0; $i < sizeof($students); $i++ ){
 				$counter = $i + 1;
                 $student = selectDBNew('students',[$students[$i]["studentId"]],"`id` = ?","");
@@ -121,22 +120,22 @@ if( isset($_POST["sessionId"]) ){
 					<input type="radio" name="attendance[]" value="1" <?php echo $checkedAttended ?> >Yes
 					<input type="radio" name="attendance[]" value="0" <?php echo $checkedAbsent ?> >No
 				<div style="display:none">  
-					<label id="fullName<?php echo $students[$i]["id"]?>"><?php echo $students[$i]["fullName"] ?></label>
-					<label id="mobile<?php echo $students[$i]["id"]?>"><?php echo $students[$i]["mobile"] ?></label>
-					<label id="civilId<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["civilId"] ?></label>					
-					<label id="dateOfBirth<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["dateOfBirth"] ?></label>					
-					<label id="subscription<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["subscription"] ?></label>					
-					<label id="nationalityId<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["nationalityId"] ?></label>					
-					<label id="beltId<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["beltId"] ?></label>			
-					<label id="strap<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["strap"] ?></label>			
-					<label id="maritalStatus<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["maritalStatus"] ?></label>			
-					<label id="livesWith<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["livesWith"] ?></label>			
-					<label id="surgery<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["surgery"] ?></label>			
-					<label id="mentionSurgery<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["mentionSurgery"] ?></label>			
-					<label id="injury<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["injury"] ?></label>			
-					<label id="mentionInjury<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["mentionInjury"] ?></label>			
-					<label id="sickness<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["sickness"] ?></label>			
-					<label id="mentionSickness<?php echo $students[$i]["id"] ?>" ><?php echo $students[$i]["mentionSickness"] ?></label>			
+					<label id="fullName<?php echo $student[0]["id"]?>"><?php echo $student[0]["fullName"] ?></label>
+					<label id="mobile<?php echo $student[0]["id"]?>"><?php echo $student[0]["mobile"] ?></label>
+					<label id="civilId<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["civilId"] ?></label>					
+					<label id="dateOfBirth<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["dateOfBirth"] ?></label>					
+					<label id="subscription<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["subscription"] ?></label>					
+					<label id="nationalityId<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["nationalityId"] ?></label>					
+					<label id="beltId<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["beltId"] ?></label>			
+					<label id="strap<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["strap"] ?></label>			
+					<label id="maritalStatus<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["maritalStatus"] ?></label>			
+					<label id="livesWith<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["livesWith"] ?></label>			
+					<label id="surgery<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["surgery"] ?></label>			
+					<label id="mentionSurgery<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["mentionSurgery"] ?></label>			
+					<label id="injury<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["injury"] ?></label>			
+					<label id="mentionInjury<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["mentionInjury"] ?></label>			
+					<label id="sickness<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["sickness"] ?></label>			
+					<label id="mentionSickness<?php echo $student[0]["id"] ?>" ><?php echo $student[0]["mentionSickness"] ?></label>			
 				</div>
 				</td>
 				</tr>
