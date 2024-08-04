@@ -65,7 +65,7 @@ if( isset($_POST["sessionId"]) ){
 
 <form method="POST" action="" enctype="multipart/form-data">
 <input type="hidden" name="trainerId" value="<?php echo $userID ?>">
-<input type="hidden" name="sessionId" value="<?php echo $_POST["id"] ?>">
+<input type="hidden" name="sessionId" value="<?php echo ( isset($_POST["id"]) && !empty($_POST["id"]) ) ? $_POST["id"] : "" ?>">
 
 <div class="col-sm-12">
 <div class="panel panel-default card-view">
