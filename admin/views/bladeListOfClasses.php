@@ -102,6 +102,7 @@ if( isset($_POST["sessionId"]) ){
 				$checkedAbsent = "";
 			}
 			for( $i = 0; $i < sizeof($students); $i++ ){
+				$notes = "";
 				$counter = $i + 1;
                 $student = selectDBNew('students',[$students[$i]["studentId"]],"`id` = ?","");
 				if ( ($key = array_search($student[0]["id"], $studentList)) !== false ) {
@@ -111,10 +112,21 @@ if( isset($_POST["sessionId"]) ){
 					$checkedAttended = "";
 					$checkedAbsent = "";
 				}
-				
+				if( $student[0]["hidden"] == 2 ){
+					$notes .= " - " . direction("Suspended","إيقاف");
+				}
+				if( !empty($student[0]["mentionSurgery"]) ){
+					$notes .= " - {$student[0]["mentionSurgery"]}";
+				}
+				if( !empty($student[0]["mentionInjury"]) ){
+					$notes .= " - {$student[0]["mentionInjury"]}";
+				}
+				if( !empty($student[0]["mentionSickness"]) ){
+					$notes .= " - {$student[0]["mentionSickness"]}";
+				}
 				?>
 				<tr>
-				<td style="text-wrap: wrap;"><?php echo $student[0]["fullName"] ?></td>
+				<td style="text-wrap: wrap;"><?php echo $student[0]["fullName"] . $notes ?></td>
 				<td class="text-nowrap">
 					<input type="hidden" name="studentList[]" value="<?php echo $student[0]["id"] ?>" >
 					<input type="radio" name="attendance[]" value="1" <?php echo $checkedAttended ?> >Yes
