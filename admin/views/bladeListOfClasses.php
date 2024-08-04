@@ -104,7 +104,7 @@ if( isset($_POST["sessionId"]) ){
 				<tr>
 				<td style="text-wrap: wrap;"><?php echo $student[0]["fullName"] ?></td>
 				<td class="text-nowrap">
-					<input type="checkbox" class="form-control" name="list[]" value="<?php echo $students[$i]["id"] ?>" <?php echo $checked ?> >
+					<input type="checkbox" class="form-control" name="list[]" value="<?php echo $student[0]["id"] ?>" <?php echo $checked ?> >
 				<div style="display:none">
 					<label id="fullName<?php echo $students[$i]["id"]?>"><?php echo $students[$i]["fullName"] ?></label>
 					<label id="mobile<?php echo $students[$i]["id"]?>"><?php echo $students[$i]["mobile"] ?></label>
