@@ -106,8 +106,8 @@ if( isset($_POST["sessionId"]) ){
                 $student = selectDBNew('students',[$students[$i]["studentId"]],"`id` = ?","");
 				var_dump($key = array_search($student[0]["id"], $studentList));
 				if ( $key = array_search($student[0]["id"], $studentList) ){
-					$checkedAttended = ( $attendances[$key] == 1 ) ? "checked" : "";
-					$checkedAbsent = ( $attendances[$key] == 0 ) ? "checked" : "";
+					$checkedAttended = ( $attendance[$key] == 1 ) ? "checked" : "";
+					$checkedAbsent = ( $attendance[$key] == 0 ) ? "checked" : "";
 				}else{
 					$checkedAttended = "";
 					$checkedAbsent = "";
