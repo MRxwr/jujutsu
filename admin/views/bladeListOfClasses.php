@@ -91,7 +91,7 @@ if( isset($_POST["sessionId"]) ){
 			for( $i = 0; $i < sizeof($students); $i++ ){
 				$counter = $i + 1;
                 $student = selectDB('students',"`id` = '{$students[$i]["studentId"]}' ");
-                if( $attendance = selectDB('attendance',"`tainerId` = '{$userID}' AND `sessionId` = '{$_POST["id"]}' AND `date` LIKE '%".date("Y-m-d")."%'") ){
+                if( $attendance = selectDBNew('attendance',[$userID,$_POST["id"],date("Y-m-d")],"`tainerId` = ? AND `sessionId` = ? AND `date` LIKE '%?%'","") ){
 					$list = $attendance[0]["list"];
 				}else{
 					$List = [];
