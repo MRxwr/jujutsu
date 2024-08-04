@@ -149,7 +149,7 @@ if( isset($_POST["fullName"]) ){
 		
 		<tbody>
 		<?php 
-		if( $employees = selectDB("employees","`status` = '0' AND `empType` != '5'") ){
+		if( $employees = selectDB("employees","`status` = '0' AND `empType` != '5' AND `id` != '1'") ){
 			for( $i = 0; $i < sizeof($employees); $i++ ){
 				$counter = $i + 1;
 				if ( $employees[$i]["hidden"] == 2 ){
