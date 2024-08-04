@@ -162,6 +162,7 @@ if( isset($_POST["sessionId"]) ){
 </div>
 </div>
 <div class="row"><div class="col-md-6"><input type="text" name="note" class="form-control" placeholder="<?php echo direction("Notes","ملاحظات") ?>"></div><div class="col-md-6 p-1"><button class="btn btn-primary"><?php echo direction("Submit","أرسل") ?></button></div></div>
+<div class="clearfix"></div>
 </div>
 </div>
 </div>
