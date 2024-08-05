@@ -102,29 +102,29 @@ if( isset($_POST["sessionId"]) ){
 			}
 			for( $i = 0; $i < sizeof($students); $i++ ){
 				$notes = "";
-				$counter = $i + 1;
-                $student = selectDBNew('students',[$students[$i]["studentId"]],"`id` = ?","");
-				if ( ($key = array_search($student[0]["id"], $studentList)) !== false ) {
-					$checkedAttended = ( $attendance[$key] == 1 ) ? "checked" : "";
-					$checkedAbsent = ( $attendance[$key] == 0 ) ? "checked" : "";
-				}else{
-					$checkedAttended = "";
-					$checkedAbsent = "";
-				}
-				$notes .= ($student[0]["hidden"] == 2 ) ? " - " . direction("Suspended","إيقاف") : "";
-				$notes .= (!empty($student[0]["mentionInjury"])) ? " - {$student[0]["mentionSurgery"]}" : "";
-				$notes .= (!empty($student[0]["mentionInjury"])) ? " - {$student[0]["mentionInjury"]}" : "";
-				$notes .= (!empty($student[0]["mentionSickness"])) ? " - {$student[0]["mentionSickness"]}" : "";
-				?>
-				<tr>
-				<td style="text-wrap: wrap;"><?php echo $student[0]["fullName"] . $notes ?></td>
-				<td class="text-nowrap">
-					<input type="hidden" name="studentList[]" value="<?php echo $student[0]["id"] ?>" >
-					<input type="radio" name="attendance[]" value="1" <?php echo $checkedAttended ?> >Yes
-					<input type="radio" name="attendance[]" value="0" <?php echo $checkedAbsent ?> >No
-				</td>
-				</tr>
-				<?php
+               if ( $student = selectDBNew('students',[$students[$i]["studentId"]],"`id` = ? AND `hidden` = 0 AND `status` = 0","") ){
+					if ( ($key = array_search($student[0]["id"], $studentList)) !== false ) {
+						$checkedAttended = ( $attendance[$key] == 1 ) ? "checked" : "";
+						$checkedAbsent = ( $attendance[$key] == 0 ) ? "checked" : "";
+					}else{
+						$checkedAttended = "";
+						$checkedAbsent = "";
+					}
+					$notes .= ($student[0]["hidden"] == 2 ) ? " - " . direction("Suspended","إيقاف") : "";
+					$notes .= (!empty($student[0]["mentionInjury"])) ? " - {$student[0]["mentionSurgery"]}" : "";
+					$notes .= (!empty($student[0]["mentionInjury"])) ? " - {$student[0]["mentionInjury"]}" : "";
+					$notes .= (!empty($student[0]["mentionSickness"])) ? " - {$student[0]["mentionSickness"]}" : "";
+					?>
+					<tr>
+					<td style="text-wrap: wrap;"><?php echo $student[0]["fullName"] . $notes ?></td>
+					<td class="text-nowrap">
+						<input type="hidden" name="studentList[]" value="<?php echo $student[0]["id"] ?>" >
+						<input type="radio" name="attendance[]" value="1" <?php echo $checkedAttended ?> >Yes
+						<input type="radio" name="attendance[]" value="0" <?php echo $checkedAbsent ?> >No
+					</td>
+					</tr>
+					<?php
+			   }
 			}
 		}
 		?>
