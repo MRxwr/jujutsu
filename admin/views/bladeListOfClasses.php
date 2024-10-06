@@ -10,7 +10,9 @@ if( isset($_POST["sessionId"]) ){
 				"trainerId" => $userID,
 				"note" => $_POST["note"]
 			);
-			insertDB('class_notes', $dataNote);
+			if ( !empty($_POST["note"]) ){
+				insertDB('class_notes', $dataNote);
+			}
 			header("LOCATION: ?v=ListOfClasses");
 		}else{
 		?>
@@ -26,7 +28,9 @@ if( isset($_POST["sessionId"]) ){
 				"trainerId" => $userID,
 				"note" => $_POST["note"]
 			);
-			insertDB('class_notes', $dataNote);
+			if ( !empty($_POST["note"]) ){
+				insertDB('class_notes', $dataNote);
+			}
 			header("LOCATION: ?v=ListOfClasses");
 		}else{
 		?>
