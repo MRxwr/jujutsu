@@ -38,7 +38,7 @@ if( isset($_POST["updateRank"]) ){
 	header("LOCATION: ?v=Invoices");
 }
 
-if( isset($_POST["student"]) ){
+if( isset($_POST["studentId"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
 	$student = selectDB('students',"`id` = '{$_POST["studentId"]}'");
