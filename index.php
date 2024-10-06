@@ -9,8 +9,8 @@ if( isset($_GET["result"]) && !empty($_GET["result"]) ){
             }else{
                 $status = 2;
             }
+            updateDB("invoices",array("status"=>$status,"returnResponse"=>json_encode($_GET)),"`id` = {$invoice[0]["id"]}");
         }
-        updateDB("invoices",array("status"=>$status,"returnResponse"=>json_encode($_GET)),"`id` = {$invoice[0]["id"]}");
     }
 }
 ?>
