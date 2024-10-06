@@ -33,7 +33,7 @@
 				<tr>
 				<td><?php echo str_pad($counter, 2, "0", STR_PAD_LEFT) ?></td>
 				<td><?php echo $attendance[$i]["date"] ?></td>
-				<td><?php echo $trainer ?></td>
+				<td><?php echo $trainer[0]["fullName"] ?></td>
 				<td><?php echo direction($class[0]["enTitle"],$class[0]["arTitle"]) ?></td>
 				<td class="text-nowrap">
 					<a href="<?php echo "?v={$_GET["v"]}&delId={$branches[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Show attendance","اظهار الحضور") ?>"><i class="fa fa-plus text-primary"></i>
