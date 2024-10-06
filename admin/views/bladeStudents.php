@@ -229,7 +229,7 @@ if( isset($_POST["fullName"]) ){
 				<td class="text-nowrap">
 					<a href="<?php echo "?v=StudentMore&id={$students[$i]["id"]}" ?>" style="align-content: center;" class="btn btn-primary btn-circle btn-xs" data-toggle="tooltip" data-original-title="<?php echo direction("More","المزيد") ?>"><i class="fa fa-plus text-inverse"></i>
 					</a>
-					<a id="<?php echo $students[$i]["id"] ?>" style="align-content: center;" class="btn btn-warning btn-circle btn-xs" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse"></i>
+					<a id="<?php echo $students[$i]["id"] ?>" style="align-content: center;" class="btn btn-warning btn-circle btn-xs edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse"></i>
 					</a>
 					<a href="<?php echo $link ?>" style="align-content: center;" class="btn btn-default btn-circle btn-xs" data-toggle="tooltip" data-original-title="<?php echo $hide ?>"> <i class="<?php echo $icon ?> text-inverse"></i>
 					</a>
