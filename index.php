@@ -3,11 +3,11 @@ require_once("admin/includes/config.php");
 require_once("admin/includes/functions.php");
 if( isset($_GET["result"]) && !empty($_GET["result"]) ){
     if( isset($_GET["track_id"]) && !empty($_GET["track_id"]) && $returnResponse = checkUpayment($_GET["track_id"]) ){
-        if( selectDBNew("invoices",[$_GET["requested_order_id"]],"`gatewayId` = ?","") ){
-            updateDB("invoices",array("returnResponse"=>$returnResponse),"`gatewayId` = {$_GET["requested_order_id"]}");
+        if( $invoice = selectDBNew("invoices",[$_GET["requested_order_id"]],"`gatewayId` = ?","") ){
+            updateDB("invoices",array("returnResponse"=>$returnResponse),"`id` = {$invoice[0]["id"]}");
             $returnResponse = json_decode($returnResponse,true);
             $status = ($returnResponse["data"]["transaction"]["result"] == "CAPTURED") ? 1 : 2 ;
-            updateDB("invoices",array("status"=>$status),"`gatewayId` = {$_GET["requested_order_id"]}");
+            updateDB("invoices",array("status"=>$status),"`id` = {$invoice[0]["id"]}");
         }
     }
 }
