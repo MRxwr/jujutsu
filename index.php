@@ -2,6 +2,7 @@
 require_once("admin/includes/config.php");
 require_once("admin/includes/functions.php");
 if( isset($_GET["result"]) && !empty($_GET["result"]) ){
+    echo $_GET["track_id"];
     if( isset($_GET["track_id"]) && !empty($_GET["track_id"]) && $returnResponse = checkUpayment($_GET["track_id"]) ){
         if( $invoice = selectDBNew("invoices",[$_GET["requested_order_id"]],"`gatewayId` = ?","") ){
             updateDB("invoices",array("returnResponse"=>$returnResponse),"`id` = {$invoice[0]["id"]}");
