@@ -29,7 +29,7 @@ if( $class = selectDBNew("sessions",[$_GET["sessionId"]],"`id` = ?","") ){
 		
 		<tbody>
 		<?php 
-		if( isset($_GET["id"]) && !empty($_GET["id"]) && $students = selectDBNew('studentMore',[$_GET["id"]],"`sessionId` = ? AND `total` > 0","") ){
+		if( isset($_GET["id"]) && !empty($_GET["id"]) && $students = selectDBNew('studentMore',[$_GET["sessionId"]],"`sessionId` = ? AND `total` > 0","") ){
 			if( $attendances = selectDBNew('attendance',[$_GET["id"]],"`id` = ?","") ){
 				$attendance = json_decode($attendances[0]["attendance"],true);
 				$studentList = json_decode($attendances[0]["studentList"],true);
