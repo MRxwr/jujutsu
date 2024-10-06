@@ -105,12 +105,12 @@ if( isset($_POST["student"]) ){
 
 			<div class="col-md-3">
 			<label><?php echo direction("Mobile","الهاتف") ?></label>
-			<input type="text" name="phone" class="form-control" required>
+			<input type="number" step="any" name="mobile" class="form-control" placeholder="96512345678" required>
 			</div>
 
 			<div class="col-md-3">
 			<label><?php echo direction("Price","السعر") ?></label>
-			<input type="text" name="price" class="form-control" required>
+			<input type="number" step="any" min="1" name="price" class="form-control" required>
 			</div>
 			
 			<div class="col-md-6" style="margin-top:10px">
