@@ -48,7 +48,7 @@ if( isset($_POST["studentId"]) ){
 		"title" => "New Invoice issued for {$student[0]["fullName"]} On ".date('Y-m-d'),
 		"description" => "Invoice issued for {$session[0]["enTitle"]}",
 		"price" => "{$_POST["price"]}",
-		"orderId" => date('Y-m-d').time(),
+		"orderId" => date('Ymdhis').time().rand(0000,9999),
 		"name" => "{$student[0]["fullName"]}",
 		"email" =>"{$settings[0]["email"]}",
 		"mobile" => "{$_POST["mobile"]}",
