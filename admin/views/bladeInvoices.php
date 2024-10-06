@@ -83,7 +83,7 @@ if( isset($_POST["student"]) ){
 				<?php
 				if( $students = selectDB('students',"`status` = '0' ") ){
 					for( $i = 0; $i < sizeof($students); $i++){
-						echo '<option value="'.$student[$i]["id"].'">'.$student[$i]["fullName"].'</option>';
+						echo '<option value="'.$students[$i]["id"].'">'.$students[$i]["fullName"].'</option>';
 					}
 				}
 				?>
