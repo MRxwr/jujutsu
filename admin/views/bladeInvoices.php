@@ -172,6 +172,7 @@ if( isset($_POST["studentId"]) ){
 		<tbody>
 		<?php 
 		if( $Invoices = selectDBNew('invoices',[0],"`id` != ?","`id` DESC") ){
+			$notifications = selectDB('notifications_list',"`id` = '1'");
 			for( $i = 0; $i < sizeof($Invoices); $i++ ){
 				$session = selectDB('sessions',"`id` = '{$Invoices[$i]["sessionId"]}'");
 				$student = selectDB('students',"`id` = '{$Invoices[$i]["studentId"]}'");
@@ -197,7 +198,7 @@ if( isset($_POST["studentId"]) ){
 						$Invoices[$i]["gatewayResponse"] = json_decode($Invoices[$i]["gatewayResponse"],true);
 						$link = $Invoices[$i]["gatewayResponse"]["data"]["link"];
 					?>
-					<a href='<?php echo "https://wa.me/{$Invoices[$i]["mobile"]}?text={$link}" ?>' target="_blank" style="align-content: center;" class="btn btn-info btn-xs"><?php echo direction("Send Link","إرسال الرابط") ?></a>
+					<a href='<?php echo "https://wa.me/{$Invoices[$i]["mobile"]}?text={$notifications[0]["arTitle"]}{$link}" ?>' target="_blank" style="align-content: center;" class="btn btn-info btn-xs"><?php echo direction("Send Link","إرسال الرابط") ?></a>
 					<?php
 					}
 					?>
