@@ -57,7 +57,7 @@ if( isset($_POST["studentId"]) ){
 	);
 	$response = submitUpayment($dataInsert);
 	$_POST["gatewayBody"] = json_encode($dataInsert);
-	$_POST["gatewayResponse"] = $response;
+	$_POST["gatewayResponse"] = json_encode($response);
 	$_POST["gatewayId"] = $dataInsert["orderId"];
 	if ( $id == 0 ){
 		if( insertDB('invoices', $_POST) ){
