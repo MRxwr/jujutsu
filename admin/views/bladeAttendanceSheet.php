@@ -1,5 +1,5 @@
 <?php 
-if( $class = selectDBNew("sessions",[$_GET["sessiobId"]],"`id` = ?","") ){
+if( $class = selectDBNew("sessions",[$_GET["sessionId"]],"`id` = ?","") ){
 
 }else{
     header("LOCATION: ?v=AttendanceList");die();
