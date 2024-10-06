@@ -41,6 +41,24 @@ if( isset($_POST["updateRank"]) ){
 if( isset($_POST["student"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
+	$student = selectDB('students',"`id` = '{$_POST["studentId"]}'");
+	$session = selectDB('sessions',"`id` = '{$_POST["sessionId"]}'");
+	$settings = selectDB('settings',"`id` != '0'");
+	$dataInsert = array(
+		"title" => "New Invoice issued for {$student[0]["fullName"]} On ".date('Y-m-d'),
+		"description" => "Invoice issued for {$session[0]["enTitle"]}",
+		"price" => "{$_POST["price"]}",
+		"orderId" => date('Y-m-d').time(),
+		"name" => "{$student[0]["fullName"]}",
+		"email" =>"{$settings[0]["email"]}",
+		"mobile" => "{$_POST["mobile"]}",
+		"returnURL" => "{$settings[0]["website"]}",
+		"cancelURL" => "{$settings[0]["website"]}"
+	);
+	$response = submitUpayment($dataInsert);
+	$_POST["gatewayBody"] = json_encode($dataInsert);
+	$_POST["gatewayResponse"] = $response;
+	$_POST["gatewayId"] = $dataInsert["orderId"];
 	if ( $id == 0 ){
 		if( insertDB('invoices', $_POST) ){
 			header("LOCATION: ?v=Invoices");
@@ -79,7 +97,7 @@ if( isset($_POST["student"]) ){
 		<div class="row m-0">
 			<div class="col-md-3">
 			<label><?php echo direction("Studen","المتدرب") ?></label>
-			<select name="student" class="form-control" required>
+			<select name="studentId" class="form-control" required>
 				<?php
 				if( $students = selectDB('students',"`status` = '0' ") ){
 					for( $i = 0; $i < sizeof($students); $i++){
@@ -92,7 +110,7 @@ if( isset($_POST["student"]) ){
 			
 			<div class="col-md-3">
 			<label><?php echo direction("Class","الصف") ?></label>
-			<select name="student" class="form-control" required>
+			<select name="sessionId" class="form-control" required>
 				<?php
 				if( $sessions = selectDB('sessions',"`status` = '0' ") ){
 					for( $i = 0; $i < sizeof($sessions); $i++){
@@ -174,6 +192,7 @@ if( isset($_POST["student"]) ){
 				<td><?php echo $status ?></td>		
 				</td>
                 <td class="text-nowrap">
+					<a href='<?php echo "https://wa.me/{$Invoices[$i]["mobile"]}" ?>' target="_blank" style="align-content: center;" class="btn btn-info btn-xs"><?php echo direction("Send Link","إرسال الرابط") ?></a>
 					<a href="<?php echo "?v=Invoices&id={$Invoices[$i]["id"]}&status=0" ?>" style="align-content: center;" class="btn btn-default btn-xs"><?php echo direction("Pending","قيد الانتظار") ?></a>
 					<a href="<?php echo "?v=Invoices&id={$Invoices[$i]["id"]}&status=1" ?>" style="align-content: center;" class="btn btn-success btn-xs"><?php echo direction("Paid","مدفوعة") ?></a>
 					<a href="<?php echo "?v=Invoices&id={$Invoices[$i]["id"]}&status=2" ?>" style="align-content: center;" class="btn btn-danger btn-xs"><?php echo direction("Cancelled","ملغية") ?></a>
