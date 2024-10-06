@@ -2,12 +2,16 @@
 require_once("admin/includes/config.php");
 require_once("admin/includes/functions.php");
 if( isset($_GET["result"]) && !empty($_GET["result"]) ){
-    if( $_GET["result"] == "CAPTURED" && $invoice = selectDBNew("invoices",[$_GET["requested_order_id"]],"`gatewayId` = ?","") ){
-        $status = 1;
-    }else{
-        $status = 2;
+    if( $invoice = selectDBNew("invoices",[$_GET["requested_order_id"]],"`gatewayId` = ?","") ){
+        if( $invoice[0]["status"] == 0 ){
+            if(  $_GET["result"] == "CAPTURED" ){
+                $status = 1;
+            }else{
+                $status = 2;
+            }
+        }
+        updateDB("invoices",array("status"=>$status,"returnResponse"=>json_encode($_GET)),"`id` = {$invoice[0]["id"]}");
     }
-    updateDB("invoices",array("status"=>$status,"returnResponse"=>json_encode($_GET)),"`id` = {$invoice[0]["id"]}");
 }
 ?>
 
