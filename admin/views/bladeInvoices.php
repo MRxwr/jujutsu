@@ -194,7 +194,7 @@ if( isset($_POST["studentId"]) ){
                 <td class="text-nowrap">
 					<?php 
 					if( $Invoices[$i]["status"] == 0 ){
-						$Invoices[$i]["gatewayResponse"] = json_decode($Invoices[$i]["gatewayResponse"]);
+						$Invoices[$i]["gatewayResponse"] = json_decode($Invoices[$i]["gatewayResponse"],true);
 						$link = $Invoices[$i]["gatewayResponse"]["data"]["link"];
 					?>
 					<a href='<?php echo "https://wa.me/{$Invoices[$i]["mobile"]}&text={$link}" ?>' target="_blank" style="align-content: center;" class="btn btn-info btn-xs"><?php echo direction("Send Link","إرسال الرابط") ?></a>
