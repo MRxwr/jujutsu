@@ -192,7 +192,13 @@ if( isset($_POST["student"]) ){
 				<td><?php echo $status ?></td>		
 				</td>
                 <td class="text-nowrap">
+					<?php 
+					if( $Invoices[$i]["status"] == 0 ){
+					?>
 					<a href='<?php echo "https://wa.me/{$Invoices[$i]["mobile"]}" ?>' target="_blank" style="align-content: center;" class="btn btn-info btn-xs"><?php echo direction("Send Link","إرسال الرابط") ?></a>
+					<?php
+					}
+					?>
 					<a href="<?php echo "?v=Invoices&id={$Invoices[$i]["id"]}&status=0" ?>" style="align-content: center;" class="btn btn-default btn-xs"><?php echo direction("Pending","قيد الانتظار") ?></a>
 					<a href="<?php echo "?v=Invoices&id={$Invoices[$i]["id"]}&status=1" ?>" style="align-content: center;" class="btn btn-success btn-xs"><?php echo direction("Paid","مدفوعة") ?></a>
 					<a href="<?php echo "?v=Invoices&id={$Invoices[$i]["id"]}&status=2" ?>" style="align-content: center;" class="btn btn-danger btn-xs"><?php echo direction("Cancelled","ملغية") ?></a>
