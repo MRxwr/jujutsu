@@ -423,8 +423,14 @@ function checkUpayment($trackId){
 	),
 	));
 	$response = curl_exec($curl);
-	var_dump($response);
 	curl_close($curl);
+	$returnResponse = json_decode($response,true);
+	if( $invoice = selectDBNew("invoices",[$returnResponse["data"]["transaction"]["requested_order_id"]],"`gatewayId` = ?","") ){
+		updateDB("invoices",array("returnResponse"=>$response),"`id` = {$invoice[0]["id"]}");
+		$returnResponse = json_decode($response,true);
+		$status = ($returnResponse["data"]["transaction"]["result"] == "CAPTURED") ? 1 : 2 ;
+		updateDB("invoices",array("status"=>$status),"`id` = {$invoice[0]["id"]}");
+	}
 	return $response;
 }
 ?>

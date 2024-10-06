@@ -2,15 +2,12 @@
 require_once("admin/includes/config.php");
 require_once("admin/includes/functions.php");
 if( isset($_GET["result"]) && !empty($_GET["result"]) ){
-    var_dump($returnResponse = checkUpayment($_GET["track_id"]));;
-    if( isset($_GET["track_id"]) && !empty($_GET["track_id"]) && $returnResponse = checkUpayment($_GET["track_id"]) ){
-        if( $invoice = selectDBNew("invoices",[$_GET["requested_order_id"]],"`gatewayId` = ?","") ){
-            updateDB("invoices",array("returnResponse"=>$returnResponse),"`id` = {$invoice[0]["id"]}");
-            $returnResponse = json_decode($returnResponse,true);
-            $status = ($returnResponse["data"]["transaction"]["result"] == "CAPTURED") ? 1 : 2 ;
-            updateDB("invoices",array("status"=>$status),"`id` = {$invoice[0]["id"]}");
-        }
+    if( $_GET["result"] == "CAPTURED" && $invoice = selectDBNew("invoices",[$_GET["requested_order_id"]],"`gatewayId` = ?","") ){
+        $status = 1;
+    }else{
+        $status = 2;
     }
+    updateDB("invoices",array("status"=>$status,"returnResponse"=>json_encode($_GET)),"`id` = {$invoice[0]["id"]}");
 }
 ?>
 
