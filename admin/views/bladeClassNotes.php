@@ -28,7 +28,7 @@
 			for( $i = 0; $i < sizeof($notes); $i++ ){
 				$counter = $i + 1;
                 $class = selectDB('sessions',"`id` = '{$notes[$i]['sessionId']}'");
-                $trainer = selectDB('employees',"`id` = '{$notes[$i]['trainerId']}'")['name'];
+                $trainer = selectDB('employees',"`id` = '{$notes[$i]['trainerId']}'");
                 ?>
 				<tr>
 				<td><?php echo str_pad($counter,2,"0",STR_PAD_LEFT) ?></td>
