@@ -195,7 +195,7 @@ if( isset($_POST["student"]) ){
 					<?php 
 					if( $Invoices[$i]["status"] == 0 ){
 					?>
-					<a href='<?php echo "https://wa.me/{$Invoices[$i]["mobile"]}" ?>' target="_blank" style="align-content: center;" class="btn btn-info btn-xs"><?php echo direction("Send Link","إرسال الرابط") ?></a>
+					<a href='<?php echo "https://wa.me/{$Invoices[$i]["mobile"]}&text={$link}" ?>' target="_blank" style="align-content: center;" class="btn btn-info btn-xs"><?php echo direction("Send Link","إرسال الرابط") ?></a>
 					<?php
 					}
 					?>
