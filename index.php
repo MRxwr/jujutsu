@@ -12,7 +12,7 @@ if( isset($_GET["result"]) && !empty($_GET["result"]) ){
                 $status = 2;
             }
             updateDB("invoices",array("status"=>$status,"returnResponse"=>json_encode($_GET)),"`id` = {$invoice[0]["id"]}");
-            header("LOCATION: ?v=Invoice?id={$_GET["requested_order_id"]}");
+            header("LOCATION: ?v=Invoice?id={$_GET["requested_order_id"]}");die();
         }
     }
 }
