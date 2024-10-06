@@ -59,7 +59,6 @@ if( isset($_POST["studentId"]) ){
 	$_POST["gatewayBody"] = json_encode($dataInsert);
 	$_POST["gatewayResponse"] = $response;
 	$_POST["gatewayId"] = $dataInsert["orderId"];
-	die();
 	if ( $id == 0 ){
 		if( insertDB('invoices', $_POST) ){
 			header("LOCATION: ?v=Invoices");
