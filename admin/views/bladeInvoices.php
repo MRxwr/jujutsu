@@ -59,6 +59,7 @@ if( isset($_POST["student"]) ){
 	$_POST["gatewayBody"] = json_encode($dataInsert);
 	$_POST["gatewayResponse"] = $response;
 	$_POST["gatewayId"] = $dataInsert["orderId"];
+	die();
 	if ( $id == 0 ){
 		if( insertDB('invoices', $_POST) ){
 			header("LOCATION: ?v=Invoices");
@@ -141,7 +142,7 @@ if( isset($_POST["student"]) ){
 </div>
 </div>
 </div>
-
+</div>
 
 <div class="row">			
 <div class="col-sm-12">
