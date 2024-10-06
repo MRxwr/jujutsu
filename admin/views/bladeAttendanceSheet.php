@@ -58,7 +58,7 @@ if( $class = selectDBNew("sessions",[$_GET["sessionId"]],"`id` = ?","") ){
 					<td style="text-wrap: wrap;"><?php echo $student[0]["fullName"] . $notes ?></td>
 					<td class="text-nowrap">
 						<input type="hidden" name="studentList[]" value="<?php echo $student[0]["id"] ?>" >
-						<input type="radio" name="attendance[]" value="1" disabled ?php echo $checkedAttended ?> >Yes
+						<input type="radio" name="attendance[]" value="1" disabled <?php echo $checkedAttended ?> >Yes
 						<input type="radio" name="attendance[]" value="0" disabled <?php echo $checkedAbsent ?> >No
 					</td>
 					</tr>
