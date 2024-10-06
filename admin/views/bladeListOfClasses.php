@@ -5,6 +5,12 @@ if( isset($_POST["sessionId"]) ){
 	$_POST["attendance"] = json_encode($_POST["attendance"]);
 	if ( $session = selectDBNew('attendance',[$userID,$_POST["sessionId"],date("Y-m-d")],"`trainerId` = ? AND `sessionId` = ? AND DATE(`date`) = ?","") ){
 		if( updateDB('attendance', $_POST, "`id` = '{$session[0]["id"]}'") ){
+			$dataNote = array(
+				"sessionId" => $_POST["sessionId"],
+				"trainerId" => $userID,
+				"note" => $_POST["note"]
+			);
+			insertDB('class_notes', $dataNote);
 			header("LOCATION: ?v=ListOfClasses");
 		}else{
 		?>
@@ -15,6 +21,12 @@ if( isset($_POST["sessionId"]) ){
 		}
 	}else{
 		if( insertDB('attendance', $_POST) ){
+			$dataNote = array(
+				"sessionId" => $_POST["sessionId"],
+				"trainerId" => $userID,
+				"note" => $_POST["note"]
+			);
+			insertDB('class_notes', $dataNote);
 			header("LOCATION: ?v=ListOfClasses");
 		}else{
 		?>
