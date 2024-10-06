@@ -87,7 +87,7 @@ if( isset($_POST["fullName"]) ){
 			<label><?php echo direction("Type","النوع") ?></label>
 			<select name="empType" class="form-control">
 				<?php 
-				if( $roles = selectDB("roles","`status` = '0' AND `hidden` = '1'") ){
+				if( $roles = selectDB("roles","`status` = '0' AND `id` != '5' AND `hidden` = '1'") ){
 					for( $i = 0; $i < sizeof($roles); $i++ ){
 						$title = direction($roles[$i]["enTitle"],$roles[$i]["arTitle"]);
 						echo "<option value='{$roles[$i]["id"]}'>{$title}</option>";
