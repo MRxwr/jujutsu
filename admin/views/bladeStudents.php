@@ -272,6 +272,7 @@ if( isset($_POST["fullName"]) ){
 <script>
 	$(document).on("click",".edit", function(){
 		var id = $(this).attr("id");
+		console.log(id);
 		$("input[name=update]").val(id);
 
 		$("input[name=fullName]").val($("#fullName"+id).html()).focus();
