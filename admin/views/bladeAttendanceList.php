@@ -36,7 +36,7 @@
 				<td><?php echo $trainer[0]["fullName"] ?></td>
 				<td><?php echo direction($class[0]["enTitle"],$class[0]["arTitle"]) ?></td>
 				<td class="text-nowrap">
-					<a href="<?php echo "?v={$_GET["v"]}&delId={$branches[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Show attendance","اظهار الحضور") ?>"><i class="fa fa-plus text-primary"></i>
+					<a href="<?php echo "?v=AttendanceSheet&id={$attendance[$i]["id"]}&sessionId={$attendance[$i]["sessionId"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Show attendance","اظهار الحضور") ?>"><i class="fa fa-plus text-primary"></i>
 					</a>	
 				</td>
 				</tr>
