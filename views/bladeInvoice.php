@@ -79,7 +79,7 @@ if( isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) &&
     }
 </style>
 
-<div class="container">
+<div class="container" style="direction:<?php echo direction("ltr","rtl") ?>">
     <div class="row mb-4 align-items-center">
         <div class="col-md-6">
             <img src="logos/<?php echo $settingslogo ?>" alt="Company Logo" class="logo">
@@ -89,7 +89,7 @@ if( isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) &&
         </div>
     </div>
 
-    <div class="card">
+    <div class="card" style="<?php echo direction("","text-align: right;") ?>">
         <div class="card-body">
             <h3 class="card-title mb-4"><?php echo direction("Invoice","فاتورة") ?></h3>
             <div class="row">
@@ -100,13 +100,13 @@ if( isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) &&
                 </div>
                 <div class="col-md-6">
                     <p><strong><?php echo direction("Session Title","عنوان الجلسة") ?>:</strong> <span id="sessionTitle"><?php echo direction($session[0]["enTitle"],$session[0]["arTitle"]) ?></span></p>
-                    <p><strong><?php echo direction("Price","القيمه") ?>:</strong> <span id="price"><?php echo $invoice[0]["price"] ?>-/KD</span></p>
+                    <p><strong><?php echo direction("Price","القيمه") ?>:</strong> <span id="price"><?php echo direction("{$invoice[0]["price"]} -/KD","{$invoice[0]["price"]} -/دك") ?></span></p>
                 </div>
             </div>
 
             <div class="form-check mt-4">
                 <input class="form-check-input" type="checkbox" id="agreeTerms">
-                <label class="form-check-label" for="agreeTerms">
+                <label class="form-check-label mr-4" for="agreeTerms">
                     <?php echo direction("I agree to the","أوافق على") ?> <a href="#" data-toggle="modal" data-target="#termsModal"><?php echo direction("Terms and Conditions","الشروط والأحكام") ?></a>
                 </label>
             </div>

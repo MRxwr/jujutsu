@@ -15,4 +15,4 @@ require_once('admin/includes/translate.php');
     <script src="https://use.fontawesome.com/245c9398b0.js"></script>
 </head>
 
-<body style="direction:<?php echo direction("ltr","rtl") ?>">
+<body>
