@@ -13,6 +13,8 @@
                 if ($('#agreeTerms').is(':checked')) {
                     return true;
                 } else {
+                    var alert = <?php echo direction("Please check the terms and conditions","الرجاء التأكد من الشروط والأحكام") ?>;
+                    alert(alert);
                     return false;
                 }
             });
