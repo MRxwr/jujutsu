@@ -9,16 +9,12 @@
             });
 
             $('#paymentBtn').click(function() {
-                // Simulate payment process
-                setTimeout(function() {
-                    const success = Math.random() < 0.8; // 80% success rate
-                    const $status = $('#paymentStatus');
-                    if (success) {
-                        $status.html('<div class="alert alert-success">Payment successful!</div>').show();
-                    } else {
-                        $status.html('<div class="alert alert-danger">Payment failed. Please try again.</div>').show();
-                    }
-                }, 2000);
+                // check if checkbox is checked then follow link
+                if ($('#agreeTerms').is(':checked')) {
+                    return false;
+                } else {
+                    return true;
+                }
             });
         });
     </script>
