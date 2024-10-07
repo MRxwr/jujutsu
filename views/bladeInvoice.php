@@ -1,4 +1,25 @@
-
+<?php
+if( isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) && $invoice = selectDBNew("invoices",[$_GET["requested_order_id"]],"`gatewayId` = ?","") ){
+    if( $invoice[0]["status"] == 0 ){
+        $status = direction("Pending Payment" ,"قيد الانتظار");
+        $styleDisplay = "display: none;";
+    }elseif( $invoice[0]["status"] == 1 ){
+        $status = "<div class='alert alert-success'>".direction("Paid successfully","مدفوعة بنجاح")."</div>";
+        $styleDisplay = "";
+    }elseif( $invoice[0]["status"] == 2 ){
+        $status = "<div class='alert alert-danger'>".direction("Payment failed","فشل الدفع")."</div>";;
+        $styleDisplay = "";
+    }
+}else{
+    ?>
+    <script>
+        var alert = <?php echo direction("Could not process your request, Please try again.","لم يتم معالجة الطلب، الرجاء المحاولة مرة اخرى."); ?>
+        alert(alert);
+        window.location = "?v=Home";
+    </script>
+    <?php
+}
+?>
 <style>
     body {
         background-color: #f0f8ff;
@@ -87,7 +108,9 @@
 
             <button id="paymentBtn" class="btn btn-primary btn-lg mt-4" disabled>Continue to Payment</button>
 
-            <div id="paymentStatus" class="mt-3" style="display: none;"></div>
+            <div id="paymentStatus" class="mt-3" style="<?php echo $styleDisplay ?>">
+                <?php echo $status ?>
+            </div>
         </div>
     </div>
 </div>

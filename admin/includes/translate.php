@@ -1,17 +1,15 @@
 <?php
 
-$sql = "SELECT * FROM `settings` WHERE `id` LIKE '1'";
-$result = $dbconnect->query($sql);
-$row = $result->fetch_assoc();
-$settingsEmail = $row["email"];
-$settingsTitle = $row["title"];
-$settingslogo = $row["logo"];
-$cookieSession = $row["cookie"];
-$settingsWebsite = $row["website"];
-$PaymentAPIKey = $row["PaymentAPIKey"];
-$settingsOgDescription = $row["OgDescription"];
-$firebaseKey = $row["firebaseKey"];
-$settingsLang = (isset($row["language"]) && $row["language"] == "0") ? "ENG" : "AR";
+$settigns = selectDB("settings", "WHERE `id` = '1' ");
+$settingsEmail = $settigns[0]["email"];
+$settingsTitle = $settigns[0]["title"];
+$settingslogo = $settigns[0]["logo"];
+$cookieSession = $settigns[0]["cookie"];
+$settingsWebsite = $settigns[0]["website"];
+$PaymentAPIKey = $settigns[0]["PaymentAPIKey"];
+$settingsOgDescription = $settigns[0]["OgDescription"];
+$firebaseKey = $settigns[0]["firebaseKey"];
+$settingsLang = (isset($settigns[0]["language"]) && $settigns[0]["language"] == "0") ? "ENG" : "AR";
 
 if ( isset($_GET["lang"]) ){
 	$arrayLangs = ["ENG","AR"];
