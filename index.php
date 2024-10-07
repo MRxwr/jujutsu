@@ -1,6 +1,4 @@
 <?php 
-require_once("admin/includes/config.php");
-require_once("admin/includes/functions.php");
 require_once("template/header.php");
 
 if( isset($_GET["result"]) && !empty($_GET["result"]) ){
