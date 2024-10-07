@@ -132,7 +132,7 @@ if( isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) &&
             </div>
             <div class="modal-body">
                 <!-- Add your terms and conditions text here -->
-                <p><?php echo direction($settings[0]["enTerms"] . "<br>" . $settings[0]["enPolicy"],$settings[0]["arTerms"] . "<br>" . $settings[0]["arPolicy"]) ?></p>
+                <p><?php echo $termsAndConditionsText ?></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

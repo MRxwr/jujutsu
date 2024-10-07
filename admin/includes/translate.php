@@ -1,15 +1,18 @@
 <?php
 
-$settings = selectDB("settings", "WHERE `id` = '1' ");
-$settingsEmail = $settings[0]["email"];
-$settingsTitle = $settings[0]["title"];
-$settingslogo = $settings[0]["logo"];
-$cookieSession = $settings[0]["cookie"];
-$settingsWebsite = $settings[0]["website"];
-$PaymentAPIKey = $settings[0]["PaymentAPIKey"];
-$settingsOgDescription = $settings[0]["OgDescription"];
-$firebaseKey = $settings[0]["firebaseKey"];
-$settingsLang = (isset($settings[0]["language"]) && $settings[0]["language"] == "0") ? "ENG" : "AR";
+$sql = "SELECT * FROM `settings` WHERE `id` LIKE '1'";
+$result = $dbconnect->query($sql);
+$row = $result->fetch_assoc();
+$settingsEmail = $row["email"];
+$settingsTitle = $row["title"];
+$settingslogo = $row["logo"];
+$cookieSession = $row["cookie"];
+$settingsWebsite = $row["website"];
+$PaymentAPIKey = $row["PaymentAPIKey"];
+$settingsOgDescription = $row["OgDescription"];
+$firebaseKey = $row["firebaseKey"];
+$settingsLang = (isset($row["language"]) && $row["language"] == "0") ? "ENG" : "AR";
+$termsAndConditionsText = direction($row["enTerms"] . "<br>" . $row["enPolicy"],$row["arTerms"] . "<br>" . $row["arPolicy"]);
 
 if ( isset($_GET["lang"]) ){
 	$arrayLangs = ["ENG","AR"];
