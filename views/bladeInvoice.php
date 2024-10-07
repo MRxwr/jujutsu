@@ -56,7 +56,7 @@
 <div class="container">
     <div class="row mb-4 align-items-center">
         <div class="col-md-6">
-            <img src="/api/placeholder/100/100" alt="Company Logo" class="logo">
+            <img src="img/<?php echo $settingslogo ?>" alt="Company Logo" class="logo">
         </div>
         <div class="col-md-6 text-md-right">
             <h2 class="text-primary"><?php echo $settingsTitle ?></h2>
