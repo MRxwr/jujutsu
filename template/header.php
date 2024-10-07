@@ -1,3 +1,9 @@
+<?php
+require_once('admin/includes/config.php');
+require_once('admin/includes/functions.php');
+require_once('admin/includes/translate.php');
+
+?>
 <!DOCTYPE html>
 <html lang="en" >
 

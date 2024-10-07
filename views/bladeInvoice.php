@@ -59,7 +59,7 @@
             <img src="/api/placeholder/100/100" alt="Company Logo" class="logo">
         </div>
         <div class="col-md-6 text-md-right">
-            <h2 class="text-primary">Company Name</h2>
+            <h2 class="text-primary"><?php echo $settingsTitle ?></h2>
         </div>
     </div>
 
