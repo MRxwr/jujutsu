@@ -100,7 +100,7 @@ if( isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) &&
                 </div>
                 <div class="col-md-6">
                     <p><strong><?php echo direction("Session Title","عنوان الجلسة") ?>:</strong> <span id="sessionTitle"><?php echo direction($session[0]["enTitle"],$session[0]["arTitle"]) ?></span></p>
-                    <p><strong><?php echo direction("Session Date","تاريخ الجلسة") ?>:</strong> <span id="price"><?php echo $invoice[0]["id"] ?>-/KD</span></p>
+                    <p><strong><?php echo direction("Price","القيمه") ?>:</strong> <span id="price"><?php echo $invoice[0]["price"] ?>-/KD</span></p>
                 </div>
             </div>
 
