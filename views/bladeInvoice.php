@@ -2,10 +2,11 @@
 if( isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) && $invoice = selectDBNew("invoices",[$_GET["requested_order_id"]],"`gatewayId` = ?","") ){
     $student = selectDB("students","`id` = {$invoice[0]["studentId"]}");
     $session = selectDB("sessions","`id` = {$invoice[0]["sessionId"]}");
+    $gatewayResponse = json_decode($invoice[0]["gatewayResponse"],true);
     if( $invoice[0]["status"] == 0 ){
         $status = direction("Pending Payment" ,"قيد الانتظار");
         $styleDisplay = "display: none;";
-        $invoiceLink = "";
+        $invoiceLink = $gatewayResponse["data"]["link"];
     }elseif( $invoice[0]["status"] == 1 ){
         $status = "<div class='alert alert-success'>".direction("Paid successfully","مدفوعة بنجاح")."</div>";
         $styleDisplay = "";
@@ -104,16 +105,17 @@ if( isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) &&
                 </div>
             </div>
 
-            <div class="form-check mt-4">
-                <input class="form-check-input" type="checkbox" id="agreeTerms">
-                <label class="form-check-label mr-4" for="agreeTerms">
-                    <?php echo direction("I agree to the","أوافق على") ?> <a href="#" data-toggle="modal" data-target="#termsModal"><?php echo direction("Terms and Conditions","الشروط والأحكام") ?></a>
-                </label>
-            </div>
-
             <?php 
             if ( isset($invoiceLink) && !empty($invoiceLink) ){
                 ?>
+
+                <div class="form-check mt-4">
+                    <input class="form-check-input" type="checkbox" id="agreeTerms">
+                    <label class="form-check-label mr-4" for="agreeTerms">
+                        <?php echo direction("I agree to the","أوافق على") ?> <a href="#" data-toggle="modal" data-target="#termsModal"><?php echo direction("Terms and Conditions","الشروط والأحكام") ?></a>
+                    </label>
+                </div>
+
                 <a id="paymentBtn" href="<?php echo $invoiceLink ?>" class="btn btn-primary btn-lg mt-4" ><?php echo direction("Pay Now","ادفع الان") ?></a>
                 <?php
             }
