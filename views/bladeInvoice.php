@@ -111,7 +111,13 @@ if( isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) &&
                 </label>
             </div>
 
-            <a id="paymentBtn" href="<?php echo $invoiceLink ?>" class="btn btn-primary btn-lg mt-4" ><?php echo direction("Pay Now","ادفع الان") ?></a>
+            <?php 
+            if ( isset($invoiceLink) && !empty($invoiceLink) ){
+                ?>
+                <a id="paymentBtn" href="<?php echo $invoiceLink ?>" class="btn btn-primary btn-lg mt-4" ><?php echo direction("Pay Now","ادفع الان") ?></a>
+                <?php
+            }
+            ?>
 
             <div id="paymentStatus" class="mt-3" style="<?php echo $styleDisplay ?>">
                 <?php echo $status ?>
