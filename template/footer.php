@@ -11,9 +11,9 @@
             $('#paymentBtn').click(function() {
                 // check if checkbox is checked then follow link
                 if ($('#agreeTerms').is(':checked')) {
-                    return false;
-                } else {
                     return true;
+                } else {
+                    return false;
                 }
             });
         });
