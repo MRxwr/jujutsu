@@ -1,15 +1,15 @@
 <?php
 
-$settigns = selectDB("settings", "WHERE `id` = '1' ");
-$settingsEmail = $settigns[0]["email"];
-$settingsTitle = $settigns[0]["title"];
-$settingslogo = $settigns[0]["logo"];
-$cookieSession = $settigns[0]["cookie"];
-$settingsWebsite = $settigns[0]["website"];
-$PaymentAPIKey = $settigns[0]["PaymentAPIKey"];
-$settingsOgDescription = $settigns[0]["OgDescription"];
-$firebaseKey = $settigns[0]["firebaseKey"];
-$settingsLang = (isset($settigns[0]["language"]) && $settigns[0]["language"] == "0") ? "ENG" : "AR";
+$settings = selectDB("settings", "WHERE `id` = '1' ");
+$settingsEmail = $settings[0]["email"];
+$settingsTitle = $settings[0]["title"];
+$settingslogo = $settings[0]["logo"];
+$cookieSession = $settings[0]["cookie"];
+$settingsWebsite = $settings[0]["website"];
+$PaymentAPIKey = $settings[0]["PaymentAPIKey"];
+$settingsOgDescription = $settings[0]["OgDescription"];
+$firebaseKey = $settings[0]["firebaseKey"];
+$settingsLang = (isset($settings[0]["language"]) && $settings[0]["language"] == "0") ? "ENG" : "AR";
 
 if ( isset($_GET["lang"]) ){
 	$arrayLangs = ["ENG","AR"];
