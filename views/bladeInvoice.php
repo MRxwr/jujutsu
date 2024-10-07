@@ -1,4 +1,58 @@
 
+<style>
+    body {
+        background-color: #f0f8ff;
+        color: #333;
+        font-family: 'Arial', sans-serif;
+    }
+    .logo {
+        max-width: 100px;
+        height: auto;
+    }
+    .container {
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    .card {
+        border: none;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+    .card-title {
+        color: #007bff;
+        font-weight: bold;
+    }
+    .btn-primary {
+        background-color: #ffa500;
+        border-color: #ffa500;
+        transition: all 0.3s ease;
+    }
+    .btn-primary:hover, .btn-primary:focus {
+        background-color: #ff8c00;
+        border-color: #ff8c00;
+        box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+    }
+    .form-check-label a {
+        color: #007bff;
+    }
+    footer {
+        background-color: #007bff;
+        color: #ffffff;
+        padding: 20px 0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+    @media (max-width: 768px) {
+        .container {
+            padding: 15px;
+        }
+    }
+</style>
+
 <div class="container">
     <div class="row mb-4 align-items-center">
         <div class="col-md-6">
