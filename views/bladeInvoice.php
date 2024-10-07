@@ -1,14 +1,19 @@
 <?php
 if( isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) && $invoice = selectDBNew("invoices",[$_GET["requested_order_id"]],"`gatewayId` = ?","") ){
+    $student = selectDB("students","WHERE `id` = ? ",[$invoice[0]["studentId"]]);
+    $session = selectDB("sessions","WHERE `id` = ? ",[$invoice[0]["sessionId"]]);
     if( $invoice[0]["status"] == 0 ){
         $status = direction("Pending Payment" ,"قيد الانتظار");
         $styleDisplay = "display: none;";
+        $invoiceLink = "";
     }elseif( $invoice[0]["status"] == 1 ){
         $status = "<div class='alert alert-success'>".direction("Paid successfully","مدفوعة بنجاح")."</div>";
         $styleDisplay = "";
+        $invoiceLink = "";
     }elseif( $invoice[0]["status"] == 2 ){
         $status = "<div class='alert alert-danger'>".direction("Payment failed","فشل الدفع")."</div>";;
         $styleDisplay = "";
+        $invoiceLink = "";
     }
 }else{
     ?>
@@ -86,27 +91,27 @@ if( isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) &&
 
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title mb-4">Invoice</h3>
+            <h3 class="card-title mb-4"><?php echo direction("Invoice","فاتورة") ?></h3>
             <div class="row">
                 <div class="col-md-6">
-                    <p><strong>Invoice ID:</strong> <span id="invoiceId">INV-001</span></p>
-                    <p><strong>Client Name:</strong> <span id="clientName">John Doe</span></p>
-                    <p><strong>Client Phone:</strong> <span id="clientPhone">+1 123-456-7890</span></p>
+                    <p><strong><?php echo direction("Invoice ID","رقم الفاتورة")?>:</strong> <span id="invoiceId"><?php echo $invoice[0]["id"] ?></span></p>
+                    <p><strong><?php echo direction("Client Name","اسم العميل")?>:</strong> <span id="clientName"><?php echo $student[0]["fullName"] ?></span></p>
+                    <p><strong><?php echo direction("Client Phone","رقم الهاتف")?>:</strong> <span id="clientPhone"><?php echo $student[0]["mobile"] ?></span></p>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Session Title:</strong> <span id="sessionTitle">Consultation</span></p>
-                    <p><strong>Price:</strong> <span id="price">$100.00</span></p>
+                    <p><strong><?php echo direction("Session Title","عنوان الجلسة") ?>:</strong> <span id="sessionTitle"><?php echo direction($session[0]["enTitle"],$session[0]["arTitle"]) ?></span></p>
+                    <p><strong><?php echo direction("Session Date","تاريخ الجلسة") ?>:</strong> <span id="price"><?php echo $invoice[0]["id"] ?>-/KD</span></p>
                 </div>
             </div>
 
             <div class="form-check mt-4">
                 <input class="form-check-input" type="checkbox" id="agreeTerms">
                 <label class="form-check-label" for="agreeTerms">
-                    I agree to the <a href="#" data-toggle="modal" data-target="#termsModal">Terms and Conditions</a>
+                    <?php echo direction("I agree to the","أوافق على") ?> <a href="#" data-toggle="modal" data-target="#termsModal"><?php echo direction("Terms and Conditions","الشروط والأحكام") ?></a>
                 </label>
             </div>
 
-            <button id="paymentBtn" class="btn btn-primary btn-lg mt-4" disabled>Continue to Payment</button>
+            <a id="paymentBtn" href="<?php echo $invoiceLink ?>" class="btn btn-primary btn-lg mt-4" ><?php echo direction("Pay Now","ادفع الان") ?></a>
 
             <div id="paymentStatus" class="mt-3" style="<?php echo $styleDisplay ?>">
                 <?php echo $status ?>
@@ -120,14 +125,14 @@ if( isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) &&
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+                <h5 class="modal-title" id="termsModalLabel"><?php echo direction("Terms and Conditions","الشروط والأحكام") ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <!-- Add your terms and conditions text here -->
-                <p>These are the terms and conditions for our service...</p>
+                <p><?php echo direction($settings[0]["enTerms"] . "<br>" . $settings[0]["enPolicy"],$settings[0]["arTerms"] . "<br>" . $settings[0]["arPolicy"]) ?></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
