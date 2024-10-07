@@ -1,5 +1,5 @@
 <?php 
-require_once("template/header.php");
+require("template/header.php");
 
 if( isset($_GET["result"]) && !empty($_GET["result"]) ){
     if( $invoice = selectDBNew("invoices",[$_GET["requested_order_id"]],"`gatewayId` = ?","") ){
