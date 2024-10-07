@@ -1,7 +1,7 @@
 <?php
-if( isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) && $invoice = selectDBNew("invoices",[4],"`id` = ?","") ){
-    $student = selectDB("students","WHERE `id` = ? ",[$invoice[0]["studentId"]]);
-    $session = selectDB("sessions","WHERE `id` = ? ",[$invoice[0]["sessionId"]]);
+if( isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) && $invoice = selectDBNew("invoices",[$_GET["requested_order_id"]],"`gatewayId` = ?","") ){
+    $student = selectDB("students","`id` = {$invoice[0]["studentId"]}");
+    $session = selectDB("sessions","`id` = {$invoice[0]["sessionId"]}");
     if( $invoice[0]["status"] == 0 ){
         $status = direction("Pending Payment" ,"قيد الانتظار");
         $styleDisplay = "display: none;";
