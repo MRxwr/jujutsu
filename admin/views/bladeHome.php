@@ -1,5 +1,5 @@
 <?php
-/*
+
 <style>
 .centered {
     position: absolute;
@@ -214,5 +214,5 @@ for ( $y =0; $y < 3; $y++){
     </div>
 
 </div>
-*/
+
 ?>
