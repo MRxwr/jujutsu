@@ -200,7 +200,7 @@ if( isset($_POST["studentId"]) ){
 					<?php 
 					if( $Invoices[$i]["status"] == 0 ){
 						$Invoices[$i]["gatewayResponse"] = json_decode($Invoices[$i]["gatewayResponse"],true);
-						$link = "{$settingsWebsite}/?v=Invoice&requested_order_id={$invoices[0]["gatewayId"]}";
+						$link = "{$settingsWebsite}/?v=Invoice&requested_order_id={$Invoices[0]["gatewayId"]}";
 					?>
 					<a href='<?php echo "https://wa.me/{$Invoices[$i]["mobile"]}?text={$notifications[0]["arTitle"]}{$link}" ?>' target="_blank" style="align-content: center;" class="btn btn-info btn-xs"><?php echo direction("Send Link","إرسال الرابط") ?></a>
 					<?php
