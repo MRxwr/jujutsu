@@ -145,6 +145,6 @@ if( isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) &&
     </div>
 </div>
 
-<footer class="text-center">
+<div class="text-center">
     <p>&copy; 2024 Your Company Name. All rights reserved.</p>
-</footer>
+</div>
