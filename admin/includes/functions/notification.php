@@ -310,7 +310,7 @@ function sendUltramsg($data){
 	if ($err) {
 	  echo "cURL Error #:" . $err;
 	} else {
-	  echo $response;die();
+	  echo $response;
 	}
 }
 ?>
