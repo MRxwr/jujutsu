@@ -115,7 +115,6 @@ if( isset($_GET["requested_order_id"]) && !empty($_GET["requested_order_id"]) &&
                         <?php echo direction("I agree to the","أوافق على") ?> <a href="#" data-toggle="modal" data-target="#termsModal"><?php echo direction("Terms and Conditions","الشروط والأحكام") ?></a>
                     </label>
                 </div>
-
                 <a id="paymentBtn" href="<?php echo $invoiceLink ?>" class="btn btn-primary btn-lg mt-4" ><?php echo direction("Pay Now","ادفع الان") ?></a>
                 <?php
             }
