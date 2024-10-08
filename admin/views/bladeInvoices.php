@@ -72,6 +72,7 @@ if( isset($_POST["studentId"]) ){
 		}
 	}else{
 		if( updateDB('invoices', $_POST, "`id` = '{$id}'") ){
+			sendUltramsg(array("to"=>"{$_POST["mobile"]}","msg"=> "Please follow the link to continue your payment {$response["data"]["link"]}"));
 			header("LOCATION: ?v=Invoices");
 		}else{
 		?>
