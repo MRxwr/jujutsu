@@ -61,7 +61,9 @@ if( isset($_POST["studentId"]) ){
 	$_POST["gatewayId"] = $dataInsert["orderId"];
 	if ( $id == 0 ){
 		if( insertDB('invoices', $_POST) ){
-			sendUltramsg(array("to"=>"{$_POST["mobile"]}","msg"=> "Please follow the link to continue your payment {$response["data"]["link"]}"));
+			sendUltramsg(
+				array("to"=>"{$_POST["mobile"]}",
+				      "msg"=> "Please follow the link to continue your payment \n {$settingsWebsite}/?v=Invoice&requested_order_id={$dataInsert["orderId"]}"));
 			header("LOCATION: ?v=Invoices");
 		}else{
 		?>
