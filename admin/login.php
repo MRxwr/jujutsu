@@ -1,5 +1,6 @@
 <?php
 require ("includes/config.php");
+require("includes/functions.php");
 require ("includes/translate.php");
 
 if ( isset($_COOKIE[$cookieSession."A"]) ){
