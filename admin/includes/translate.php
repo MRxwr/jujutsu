@@ -12,7 +12,7 @@ $PaymentAPIKey = $row["PaymentAPIKey"];
 $settingsOgDescription = $row["OgDescription"];
 $firebaseKey = $row["firebaseKey"];
 $settingsLang = (isset($row["language"]) && $row["language"] == "0") ? "ENG" : "AR";
-$termsAndConditionsText = direction($row["enTerms"] . "<br>" . $row["enPolicy"],$row["arTerms"] . "<br>" . $row["arPolicy"]);
+$termsAndConditionsText = "";//direction($row["enTerms"] . "<br>" . $row["enPolicy"],$row["arTerms"] . "<br>" . $row["arPolicy"]);
 
 if ( isset($_GET["lang"]) ){
 	$arrayLangs = ["ENG","AR"];
