@@ -1,4 +1,4 @@
-<?php
+
 
 <style>
 .centered {
