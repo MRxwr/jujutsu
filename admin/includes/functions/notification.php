@@ -283,7 +283,7 @@ function addSeen($users){
 }
 
 function sendUltramsg($data){
-	$params=array(
+	$params = array(
 		'token' => 'ubuoz8nlunug6bwn',
 		'to' => "{$data["to"]}",
 		'body' => "{$data["msg"]}"
