@@ -180,8 +180,6 @@ if( isset($_POST["studentId"]) ){
 			for( $i = 0; $i < sizeof($Invoices); $i++ ){
 				$session = selectDB('sessions',"`id` = '{$Invoices[$i]["sessionId"]}'");
 				$student = selectDB('students',"`id` = '{$Invoices[$i]["studentId"]}'");
-				$Invoices[$i]["gatewayResponse"] = json_decode($Invoices[$i]["gatewayResponse"],true);
-				$link = urlencode("{$settingsWebsite}/?v=Invoice&requested_order_id={$Invoices[$i]["gatewayId"]}");
                 if( $Invoices[$i]["status"] == 1 ){
                     $status = direction("Paid","مدفوعة");
                 }elseif( $Invoices[$i]["status"] == 2 ){
@@ -191,7 +189,7 @@ if( isset($_POST["studentId"]) ){
                 }
 				?>
 				<tr>
-				<td><a href="<?php echo $link ?>" target="_blank"><?php echo str_pad($Invoices[$i]["id"], 4, '0', STR_PAD_LEFT) ?></td>
+				<td><a href="<?php echo "{$settingsWebsite}/?v=Invoice&requested_order_id={$Invoices[$i]["gatewayId"]}" ?>" target="_blank"><?php echo str_pad($Invoices[$i]["id"], 4, '0', STR_PAD_LEFT) ?></td>
                 <td><?php echo substr($Invoices[$i]["date"],0,10) ?></td>
 				<td><?php echo $student[0]["fullName"] ?></td>
 				<td><?php echo direction("{$session[0]["enTitle"]}",$session[0]["arTitle"]) ?></td>
@@ -201,6 +199,8 @@ if( isset($_POST["studentId"]) ){
                 <td class="text-nowrap">
 					<?php 
 					if( $Invoices[$i]["status"] == 0 ){
+						$Invoices[$i]["gatewayResponse"] = json_decode($Invoices[$i]["gatewayResponse"],true);
+						$link = urlencode("{$settingsWebsite}/?v=Invoice&requested_order_id={$Invoices[$i]["gatewayId"]}");
 					?>
 					<a href='<?php echo "https://wa.me/{$Invoices[$i]["mobile"]}?text={$notifications[0]["enTitle"]}{$link}" ?>' target="_blank" style="align-content: center;" class="btn btn-info btn-xs"><?php echo direction("Send Link","إرسال الرابط") ?></a>
 					<?php
